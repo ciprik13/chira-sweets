@@ -1,0 +1,21 @@
+# deps
+node_modules/
+.pnpm-store/
+# next.js
+.next/
+out/
+build/
+# env (never commit real secrets)
+.env
+.env.*
+!.env.example
+# testing
+coverage/
+playwright-report/
+test-results/
+# misc
+.DS_Store
+*.log
+.vercel
+*.tsbuildinfo
+next-env.d.ts
