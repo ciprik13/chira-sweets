@@ -10,7 +10,7 @@ All decisions by @ciprik13 unless noted.
 | D-005 | 2026-11-24 | Dev tooling (process, security-review and design skills) lives on the developer machine only; nothing tool-specific is committed. | Keeps the public repo clean. |
 | D-006 | 2026-11-24 | Stack: Next.js (App Router) + TypeScript strict + Tailwind CSS + shadcn/ui, themed with own tokens. | As in spec. |
 | D-007 | 2026-11-24 | Repo ciprik13/chira-sweets is PUBLIC. | Free rulesets, CodeQL, secret scanning + push protection. Secrets only in env. |
-| D-008 | 2026-11-24 | Git flow: `feature/*`, `fix/*`, `chore/*`, `docs/*` → squash PR into `dev`; release PR `dev` → `main` (merge commit); semver tags on `main`. Conventional Commits. Prod deploys only from `main`. | Merge commit on release keeps `dev` and `main` histories compatible. |
+| D-008 | 2026-11-24 | Git flow: `feat/*`, `fix/*`, `chore/*`, `docs/*` → squash PR into `dev`; release PR `dev` → `main` (merge commit); semver tags on `main`. Conventional Commits. Prod deploys only from `main`. | Merge commit on release keeps `dev` and `main` histories compatible. |
 | D-009 | 2026-11-24 | MVP is a showcase site + contact. No cart, accounts or online payment. Orders happen via phone and messengers. | Fastest path to launch; online ordering is a later release. |
 | D-010 | 2026-11-24 | Order/contact channels: phone, Instagram, TikTok, Telegram, Viber, WhatsApp — shown as direct action buttons. | Customers already order this way. |
 | D-011 | 2026-11-24 | Pricing: fixed unit price for display products; "from" price for cakes and custom orders. | Showing a price drives contact; custom work is quoted. |
