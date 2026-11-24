@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+coverage
+package-lock.json
+design/brand
+docs
+README.md
+CONTRIBUTING.md
+SECURITY.md
+.github
