@@ -15,7 +15,7 @@ Closes #
 - [ ] test — tests only
 
 ## How to test
-<!-- Steps a reviewer can follow to verify the change locally or on the preview deploy. -->
+<!-- Steps a reviewer can follow to verify the change locally (or on the PR preview deploy, once CI deploys previews). -->
 1.
 
 ## Screenshots (UI changes)

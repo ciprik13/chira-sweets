@@ -24,11 +24,16 @@ body:
         2. Click ...
     validations:
       required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or screen recording
+      description: Drag and drop images or videos here. Very helpful for visual bugs.
   - type: input
     id: env
     attributes:
       label: Environment
-      placeholder: e.g. iPhone 13 / Safari 18, staging, v0.3.0
+      placeholder: e.g. iPhone 13 / Safari 18, production, v0.3.0
   - type: dropdown
     id: severity
     attributes:
