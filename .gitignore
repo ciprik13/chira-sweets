@@ -25,3 +25,7 @@ AGENTS.md
 # Cloudflare local state
 .wrangler/
 .dev.vars
+
+# TinaCMS build output
+/public/admin
+/tina/__generated__

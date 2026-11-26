@@ -3,6 +3,7 @@ import { BrandIcon } from "@/components/brand/icons";
 import { getCategory } from "@/content/catalog";
 import type { Product } from "@/content/schema";
 import type { Locale } from "@/i18n/config";
+import { responsiveImage } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 /** Product photo, or a branded placeholder until the owner's photos arrive (C-04). */
@@ -12,19 +13,25 @@ export function ProductVisual({
   noPhotoLabel,
   priority,
   className,
+  sizes = "(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw",
 }: {
   product: Product;
   locale: Locale;
   noPhotoLabel: string;
   priority?: boolean;
   className?: string;
+  /** Rendered width hint for the browser's srcset choice. */
+  sizes?: string;
 }) {
   const image = product.images[0];
 
   if (image) {
+    const { src, srcSet } = responsiveImage(image.src);
     return (
       <img
-        src={image.src}
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={image.alt[locale]}
         className={cn("aspect-square w-full object-cover", className)}
         loading={priority ? "eager" : "lazy"}

@@ -37,5 +37,14 @@ All decisions by @ciprik13 unless noted.
 |---|---|---|
 | P-025 | "Lista mea": several products sent as one messenger message. | Postponed to after launch (@ciprik13, 2026-11-26). Code kept on branch `feat/order-list`. |
 
+## Proposed — pending @ciprik13 (PR #7)
+Numbered after D-029 to avoid clashing IDs.
+
+| ID | Proposal | Why | Cost / risk |
+|---|---|---|---|
+| P-030 | Content editing through **TinaCMS (Tina Cloud, free plan)**: all content moves to JSON in `content/` (catalog, shop settings, RO/RU copy), photos to `public/uploads`; admin at `/admin`. Replaces "content edited via PR" in D-018. | Owner must update prices and photos without a developer; Tina Cloud logs in by e-mail (no GitHub account), stores content in the repo (no lock-in, history in Git). | Free plan: 2 editors, no editorial (draft/PR) workflow — that is ~$49/month. Adds an admin surface (own CSP, Tina Cloud auth). |
+| P-031 | CMS saves commit to **`dev`** (Tina Cloud app on the `protect-dev` bypass list); they show on the dev preview and go live with the next release PR `dev` → `main`, which still needs @ciprik13 in `production`. Chosen by @mihaelaaa-23 on 2026-11-26 ("with each release"), pending @ciprik13. | No content reaches production without a release review; the owner sees changes on the preview immediately. | Price changes wait for the next release; releases should be frequent once the owner edits. |
+
+
 ## Open items
 See `docs/open-questions.md`.

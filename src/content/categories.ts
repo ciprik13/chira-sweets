@@ -1,15 +1,12 @@
 import type { Locale } from "@/i18n/config";
+import raw from "../../content/catalog/catalog.json";
+import {
+  catalogFileSchema,
+  fromCatalogFile,
+  type CategoryIcon,
+} from "./catalog-file";
 
-/** Catalog categories (D-012). Slugs are shared by both languages. Owner confirmation pending. */
-export type CategoryIcon =
-  | "macaron"
-  | "cake"
-  | "cheesecake"
-  | "croissant"
-  | "dessert"
-  | "strawberry"
-  | "gift"
-  | "coffee";
+export type { CategoryIcon };
 
 export type Category = {
   slug: string;
@@ -17,45 +14,8 @@ export type Category = {
   name: Record<Locale, string>;
 };
 
-export const categories: readonly Category[] = [
-  {
-    slug: "macarons",
-    icon: "macaron",
-    name: { ro: "Macarons", ru: "Макаронс" },
-  },
-  {
-    slug: "torturi",
-    icon: "cake",
-    name: { ro: "Torturi la comandă", ru: "Торты на заказ" },
-  },
-  {
-    slug: "cheesecake",
-    icon: "cheesecake",
-    name: { ro: "Cheesecake", ru: "Чизкейк" },
-  },
-  {
-    slug: "croissante",
-    icon: "croissant",
-    name: { ro: "Croissante & patiserie", ru: "Круассаны и выпечка" },
-  },
-  {
-    slug: "deserturi",
-    icon: "dessert",
-    name: { ro: "Deserturi", ru: "Десерты" },
-  },
-  {
-    slug: "fructe-in-ciocolata",
-    icon: "strawberry",
-    name: { ro: "Fructe în ciocolată", ru: "Фрукты в шоколаде" },
-  },
-  {
-    slug: "cutii-cadou",
-    icon: "gift",
-    name: { ro: "Cutii cadou", ru: "Подарочные наборы" },
-  },
-  {
-    slug: "cafea",
-    icon: "coffee",
-    name: { ro: "Cafea & băuturi", ru: "Кофе и напитки" },
-  },
-];
+/** Parsed once; edited in the CMS (content/catalog/catalog.json). */
+export const catalogContent = fromCatalogFile(catalogFileSchema.parse(raw));
+
+/** Catalog categories (D-012), in the order set in the CMS. Slugs are shared by both languages. */
+export const categories: readonly Category[] = catalogContent.categories;

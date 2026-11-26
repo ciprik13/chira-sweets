@@ -1,0 +1,286 @@
+{
+  "products": [
+    {
+      "name": {
+        "ro": "Macarons asortate",
+        "ru": "Ассорти макаронс"
+      },
+      "category": "macarons",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "Macarons cu cremă fină, în culori și gusturi diferite.",
+        "ru": "Макаронс с нежным кремом, разных цветов и вкусов."
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": true,
+      "draft": true,
+      "slug": "macarons-asortate"
+    },
+    {
+      "name": {
+        "ro": "Turn de macarons",
+        "ru": "Башня из макаронс"
+      },
+      "category": "macarons",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "Pentru evenimente: un turn de macarons în culorile alese de tine.",
+        "ru": "Для мероприятий: башня из макаронс в выбранных вами цветах."
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": false,
+      "draft": true,
+      "slug": "turn-de-macarons"
+    },
+    {
+      "name": {
+        "ro": "Tort cu ciocolată și căpșuni",
+        "ru": "Шоколадный торт с клубникой"
+      },
+      "category": "torturi",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "Tort la comandă cu glazură de ciocolată și căpșuni proaspete.",
+        "ru": "Торт на заказ с шоколадной глазурью и свежей клубникой."
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": true,
+      "draft": true,
+      "slug": "tort-ciocolata-capsuni"
+    },
+    {
+      "name": {
+        "ro": "Tort cu fistic și zmeură",
+        "ru": "Торт с фисташкой и малиной"
+      },
+      "category": "torturi",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "Blat de fistic, cremă ușoară și strat de zmeură.",
+        "ru": "Фисташковый бисквит, лёгкий крем и малиновая прослойка."
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": false,
+      "draft": true,
+      "slug": "tort-fistic-zmeura"
+    },
+    {
+      "name": {
+        "ro": "Cheesecake clasic",
+        "ru": "Классический чизкейк"
+      },
+      "category": "cheesecake",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "",
+        "ru": ""
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": true,
+      "draft": true,
+      "slug": "cheesecake-clasic"
+    },
+    {
+      "name": {
+        "ro": "Croissant cu unt",
+        "ru": "Сливочный круассан"
+      },
+      "category": "croissante",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "Croissant proaspăt, foietat, copt în fiecare dimineață.",
+        "ru": "Свежий слоёный круассан, выпекаем каждое утро."
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": true,
+      "draft": true,
+      "slug": "croissant-cu-unt"
+    },
+    {
+      "name": {
+        "ro": "Căpșuni în ciocolată",
+        "ru": "Клубника в шоколаде"
+      },
+      "category": "fructe-in-ciocolata",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "",
+        "ru": ""
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": false,
+      "draft": true,
+      "slug": "capsuni-in-ciocolata"
+    },
+    {
+      "name": {
+        "ro": "Cutie cadou cu macarons",
+        "ru": "Подарочная коробка макаронс"
+      },
+      "category": "cutii-cadou",
+      "price": {
+        "kind": "onRequest"
+      },
+      "images": [],
+      "size": {
+        "ro": "",
+        "ru": ""
+      },
+      "description": {
+        "ro": "",
+        "ru": ""
+      },
+      "allergens": {
+        "verified": false,
+        "contains": []
+      },
+      "bestseller": false,
+      "draft": true,
+      "slug": "cutie-cadou-macarons"
+    }
+  ],
+  "categories": [
+    {
+      "name": {
+        "ro": "Macarons",
+        "ru": "Макаронс"
+      },
+      "icon": "macaron",
+      "order": 1,
+      "slug": "macarons"
+    },
+    {
+      "name": {
+        "ro": "Torturi la comandă",
+        "ru": "Торты на заказ"
+      },
+      "icon": "cake",
+      "order": 2,
+      "slug": "torturi"
+    },
+    {
+      "name": {
+        "ro": "Cheesecake",
+        "ru": "Чизкейк"
+      },
+      "icon": "cheesecake",
+      "order": 3,
+      "slug": "cheesecake"
+    },
+    {
+      "name": {
+        "ro": "Croissante & patiserie",
+        "ru": "Круассаны и выпечка"
+      },
+      "icon": "croissant",
+      "order": 4,
+      "slug": "croissante"
+    },
+    {
+      "name": {
+        "ro": "Deserturi",
+        "ru": "Десерты"
+      },
+      "icon": "dessert",
+      "order": 5,
+      "slug": "deserturi"
+    },
+    {
+      "name": {
+        "ro": "Fructe în ciocolată",
+        "ru": "Фрукты в шоколаде"
+      },
+      "icon": "strawberry",
+      "order": 6,
+      "slug": "fructe-in-ciocolata"
+    },
+    {
+      "name": {
+        "ro": "Cutii cadou",
+        "ru": "Подарочные наборы"
+      },
+      "icon": "gift",
+      "order": 7,
+      "slug": "cutii-cadou"
+    },
+    {
+      "name": {
+        "ro": "Cafea & băuturi",
+        "ru": "Кофе и напитки"
+      },
+      "icon": "coffee",
+      "order": 8,
+      "slug": "cafea"
+    }
+  ]
+}

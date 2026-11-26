@@ -26,3 +26,6 @@ npm run dev        # http://localhost:3000
 npm run lint && npm run typecheck && npm test && npm run build
 ```
 `npm run build` produces a static site in `out/`.
+
+## Content
+All texts, prices, photos and shop details are edited in the CMS at `/admin` — see [`docs/cms.md`](docs/cms.md).

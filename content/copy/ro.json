@@ -1,0 +1,482 @@
+{
+  "meta": {
+    "title": "Chira Sweets — cofetărie în Chișinău",
+    "description": "Macarons, torturi la comandă, cheesecake, croissante și cutii cadou. Cofetărie artizanală în Chișinău — comandă telefonic sau pe Telegram, Viber, WhatsApp."
+  },
+  "skipToContent": "Sari la conținut",
+  "nav": {
+    "label": "Navigare principală",
+    "catalog": "Catalog",
+    "events": "Evenimente",
+    "delivery": "Livrare",
+    "about": "Despre noi",
+    "faq": "Întrebări",
+    "contact": "Contact",
+    "menu": "Meniu",
+    "close": "Închide",
+    "language": "Limba"
+  },
+  "order": {
+    "cta": "Comandă acum",
+    "title": "Cum vrei să comanzi?",
+    "description": "Scrie-ne sau sună — îți răspundem cu detalii, preț și termen de pregătire.",
+    "call": "Sună",
+    "telegram": "Telegram",
+    "viber": "Viber",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram"
+  },
+  "actionBar": {
+    "label": "Contactează-ne rapid"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Cofetărie · Chișinău",
+      "line1": "Intră pentru o cafea.",
+      "line2": "Rămâi pentru desert.",
+      "lead": "Macarons, torturi la comandă, cheesecake și croissante proaspete — făcute cu grijă, din ingrediente de calitate.",
+      "secondary": "Vezi catalogul"
+    },
+    "features": [
+      {
+        "icon": "coffee",
+        "title": "Cafea premium"
+      },
+      {
+        "icon": "croissant",
+        "title": "Croissante proaspete"
+      },
+      {
+        "icon": "cake",
+        "title": "Deserturi artizanale"
+      },
+      {
+        "icon": "wheat",
+        "title": "Ingrediente de calitate"
+      }
+    ],
+    "categories": {
+      "eyebrow": "Catalog",
+      "title": "Ce pregătim pentru tine",
+      "viewAll": "Tot catalogul"
+    },
+    "cakes": {
+      "eyebrow": "La comandă",
+      "title": "Torturi pentru momentele tale",
+      "body": "Aniversări, botezuri, nunți sau o simplă bucurie. Alegi gustul, mărimea și decorul — noi îl facem să arate și să aibă gust exact cum ți-l imaginezi.",
+      "price": "Prețul și termenul de pregătire — la cerere",
+      "cta": "Discută tortul tău"
+    },
+    "events": {
+      "eyebrow": "Evenimente & corporate",
+      "title": "Dulciuri pentru evenimente",
+      "body": "Pregătim candy bar-uri, turnuri de macarons și cutii cadou pentru nunți, petreceri și evenimente de companie.",
+      "items": [
+        "Candy bar",
+        "Turnuri de macarons",
+        "Cutii cadou",
+        "Comenzi corporate"
+      ],
+      "cta": "Cere o ofertă"
+    },
+    "delivery": {
+      "eyebrow": "Livrare & ridicare",
+      "title": "Desertul ajunge la tine",
+      "items": [
+        {
+          "title": "Livrare în Chișinău",
+          "body": "Condițiile de livrare vor fi publicate în curând."
+        },
+        {
+          "title": "Livrare în Moldova",
+          "body": "Întreabă-ne despre livrarea în alte localități."
+        },
+        {
+          "title": "Ridicare din cofetărie",
+          "body": "Comanda te așteaptă gata ambalată."
+        }
+      ],
+      "cta": "Detalii despre livrare"
+    },
+    "about": {
+      "eyebrow": "Despre noi",
+      "title": "Atenție la fiecare detaliu",
+      "body": "Chira Sweets este o cofetărie din Chișinău unde fiecare desert este pregătit cu răbdare, din ingrediente atent alese. Calitate, prospețime și atenție la detalii — în fiecare comandă.",
+      "cta": "Povestea noastră"
+    },
+    "instagram": {
+      "eyebrow": "Instagram",
+      "title": "Urmărește-ne pentru noutăți",
+      "body": "Deserturile zilei, comenzi speciale și culisele cofetăriei.",
+      "cta": "Deschide Instagram"
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Hai să vorbim despre desertul tău",
+      "phone": "Telefon",
+      "address": "Adresă",
+      "hours": "Program",
+      "comingSoon": "În curând"
+    }
+  },
+  "catalog": {
+    "eyebrow": "Catalog",
+    "title": "Catalogul nostru",
+    "lead": "Alege categoria și descoperă deserturile Chira Sweets. Pentru comenzi, scrie-ne sau sună.",
+    "metaDescription": "Catalogul Chira Sweets: macarons, torturi la comandă, cheesecake, croissante, deserturi, fructe în ciocolată, cutii cadou și cafea, cu prețuri.",
+    "products": {
+      "one": "produs",
+      "few": "produse",
+      "many": "de produse",
+      "other": "de produse"
+    },
+    "emptyCategory": "Produsele din această categorie vor apărea în curând. Între timp, scrie-ne — îți spunem ce putem pregăti.",
+    "viewProduct": "Detalii",
+    "backToCatalog": "Înapoi la catalog",
+    "breadcrumb": "Fir de navigare",
+    "size": "Mărime / gramaj",
+    "price": "Preț",
+    "description": "Descriere",
+    "allergens": "Alergeni",
+    "allergensUnverified": "Întreabă-ne despre alergeni și ingrediente înainte de a comanda.",
+    "allergensNone": "Nu conține alergeni majori, conform rețetei.",
+    "allergensNote": "Produsele sunt pregătite într-un atelier unde se folosesc și alți alergeni.",
+    "orderThis": "Comandă acest produs",
+    "orderMessage": "Bună! Aș dori să comand: {name}",
+    "draftBadge": "Exemplu — date în curs de confirmare",
+    "noPhoto": "Fotografie în curând",
+    "related": "Din aceeași categorie",
+    "bestsellers": {
+      "eyebrow": "Preferatele clienților",
+      "title": "Cele mai iubite"
+    },
+    "priceOnRequest": "Preț la cerere",
+    "priceFrom": "de la {amount} lei",
+    "priceFixed": "{amount} lei",
+    "units": {
+      "piece": "buc",
+      "kg": "kg",
+      "box": "cutie",
+      "set": "set",
+      "portion": "porție"
+    }
+  },
+  "allergenNames": {
+    "gluten": "Gluten",
+    "crustaceans": "Crustacee",
+    "eggs": "Ouă",
+    "fish": "Pește",
+    "peanuts": "Arahide",
+    "soy": "Soia",
+    "milk": "Lapte",
+    "nuts": "Fructe cu coajă lemnoasă",
+    "celery": "Țelină",
+    "mustard": "Muștar",
+    "sesame": "Susan",
+    "sulphites": "Sulfiți",
+    "lupin": "Lupin",
+    "molluscs": "Moluște"
+  },
+  "footer": {
+    "tagline": "Calitate · Prospețime · Atenție la detalii",
+    "pages": "Pagini",
+    "contact": "Contact",
+    "follow": "Urmărește-ne",
+    "privacy": "Politica de confidențialitate",
+    "rights": "Toate drepturile rezervate."
+  },
+  "search": {
+    "label": "Caută în catalog",
+    "placeholder": "Caută: macarons, tort, cheesecake…",
+    "filters": "Filtre",
+    "allCategories": "Toate",
+    "freeFrom": "Fără",
+    "freeFromHint": "Doar produsele cu alergeni confirmați de cofetărie.",
+    "withPrice": "Doar cu preț afișat",
+    "maxPrice": "Preț maxim",
+    "results": "Rezultate",
+    "noResults": "Nimic găsit. Încearcă alt cuvânt sau scrie-ne — poate pregătim la comandă.",
+    "reset": "Resetează filtrele"
+  },
+  "pages": {
+    "common": {
+      "comingSoon": "În curând",
+      "askUs": "Întreabă-ne",
+      "openMap": "Deschide pe hartă",
+      "pendingNote": "Detaliile exacte vor fi publicate în curând. Până atunci, scrie-ne și îți răspundem rapid."
+    },
+    "events": {
+      "metaTitle": "Evenimente și comenzi corporate",
+      "metaDescription": "Candy bar, turnuri de macarons și cutii cadou pentru nunți, botezuri, aniversări și evenimente de companie în Chișinău. Cere o ofertă.",
+      "eyebrow": "Evenimente & corporate",
+      "title": "Dulciuri pentru evenimentul tău",
+      "lead": "Pregătim deserturi pentru nunți, botezuri, aniversări și evenimente de companie — de la un candy bar complet la cutii cadou pentru parteneri și colegi.",
+      "formatsTitle": "Ce putem pregăti",
+      "formats": [
+        {
+          "title": "Candy bar",
+          "body": "O masă de deserturi asortate, gândită în culorile și stilul evenimentului."
+        },
+        {
+          "title": "Turnuri de macarons",
+          "body": "Un decor dulce care se mănâncă — în culorile alese de tine."
+        },
+        {
+          "title": "Cutii cadou",
+          "body": "Cutii cu macarons și deserturi pentru invitați, clienți sau colegi."
+        },
+        {
+          "title": "Comenzi corporate",
+          "body": "Deserturi pentru ședințe, lansări și sărbători de companie."
+        }
+      ],
+      "stepsTitle": "Cum lucrăm",
+      "steps": [
+        {
+          "title": "Trimite cererea",
+          "body": "Completează formularul de mai jos — durează un minut."
+        },
+        {
+          "title": "Primești oferta",
+          "body": "Te contactăm cu propuneri, prețuri și termen de pregătire."
+        },
+        {
+          "title": "Confirmăm și pregătim",
+          "body": "După confirmare, pregătim totul pentru ziua evenimentului."
+        }
+      ],
+      "pricingNote": "Prețul, comanda minimă și termenul de pregătire depind de format și de numărul de invitați — le primești în ofertă."
+    },
+    "form": {
+      "title": "Cere o ofertă",
+      "lead": "Lasă-ne câteva detalii și te contactăm cu o propunere.",
+      "name": "Nume",
+      "phone": "Telefon",
+      "phoneHint": "De exemplu: 079 123 456",
+      "eventDate": "Data evenimentului",
+      "guests": "Număr de invitați",
+      "interest": "Ce te interesează",
+      "interests": {
+        "candyBar": "Candy bar",
+        "macaronTower": "Turn de macarons",
+        "giftBoxes": "Cutii cadou",
+        "other": "Altceva"
+      },
+      "message": "Mesaj",
+      "messageHint": "Tema, culorile, preferințele de gust sau alte detalii.",
+      "optional": "opțional",
+      "submit": "Trimite cererea",
+      "submitting": "Se trimite…",
+      "privacy": "Datele tale sunt folosite doar pentru a-ți răspunde. Detalii în",
+      "privacyLink": "politica de confidențialitate",
+      "successTitle": "Mulțumim! Cererea a fost trimisă.",
+      "successBody": "Te contactăm în curând la numărul de telefon indicat.",
+      "sendAnother": "Trimite o altă cerere",
+      "errorTitle": "Cererea nu a putut fi trimisă.",
+      "errorBody": "Te rugăm să încerci din nou sau să ne scrii direct:",
+      "errorRateLimited": "Ai trimis mai multe cereri într-un timp scurt. Încearcă din nou peste câteva minute.",
+      "errors": {
+        "required": "Câmp obligatoriu",
+        "name": "Scrie numele tău (2–80 de caractere)",
+        "phone": "Scrie un număr de telefon valid",
+        "eventDate": "Alege o dată de azi încolo",
+        "guests": "Scrie un număr între 1 și 2000",
+        "interest": "Alege o opțiune",
+        "message": "Mesajul poate avea cel mult 1000 de caractere",
+        "challenge": "Verificarea anti-spam nu s-a încheiat. Încearcă din nou."
+      }
+    },
+    "cakeForm": {
+      "eyebrow": "Tort la comandă",
+      "title": "Descrie tortul tău",
+      "lead": "Spune-ne data, numărul de porții și ideea ta. Poți atașa o fotografie de inspirație — îți răspundem cu propunere, preț și termen.",
+      "date": "Data la care ai nevoie de tort",
+      "servings": "Număr de porții",
+      "servingsHint": "Aproximativ — te ajutăm să alegi mărimea.",
+      "flavour": "Gust preferat",
+      "flavourHint": "De exemplu: ciocolată, fistic, fructe de pădure",
+      "decoration": "Decor și detalii",
+      "decorationHint": "Culori, inscripție, temă, alergii de care să ținem cont.",
+      "photo": "Fotografie de inspirație",
+      "photoHint": "JPG, PNG, WEBP sau HEIC. Datele de localizare din fotografie sunt eliminate, iar fotografia nu este păstrată pe site.",
+      "photoRemove": "Elimină fotografia",
+      "errors": {
+        "date": "Alege o dată de azi încolo",
+        "servings": "Scrie un număr între 1 și 300",
+        "flavour": "Cel mult 200 de caractere",
+        "decoration": "Cel mult 1000 de caractere",
+        "photoType": "Alege o imagine JPG, PNG, WEBP sau HEIC",
+        "photoSize": "Fotografia trebuie să aibă cel mult 5 MB"
+      },
+      "photoFailed": "Cererea a ajuns, dar fotografia nu. Trimite-ne-o pe Telegram, Viber, WhatsApp sau Instagram.",
+      "cta": "Formular pentru tort"
+    },
+    "delivery": {
+      "metaTitle": "Livrare și ridicare",
+      "metaDescription": "Livrare de deserturi în Chișinău și în Moldova, ridicare din cofetărie, termen de pregătire pentru torturi. Chira Sweets.",
+      "eyebrow": "Livrare & ridicare",
+      "title": "Cum ajunge desertul la tine",
+      "lead": "Poți ridica comanda din cofetărie sau o putem livra. Condițiile exacte le confirmăm la comandă.",
+      "sections": [
+        {
+          "id": "chisinau",
+          "title": "Livrare în Chișinău"
+        },
+        {
+          "id": "moldova",
+          "title": "Livrare în Moldova"
+        },
+        {
+          "id": "pickup",
+          "title": "Ridicare din cofetărie"
+        },
+        {
+          "id": "leadTime",
+          "title": "Termen pentru torturi"
+        }
+      ]
+    },
+    "about": {
+      "metaTitle": "Despre noi",
+      "metaDescription": "Chira Sweets — cofetărie artizanală în Durlești, Chișinău. Calitate, prospețime și atenție la detalii în fiecare desert.",
+      "eyebrow": "Despre noi",
+      "title": "Chira Sweets",
+      "lead": "O cofetărie din Chișinău unde deserturile se fac cu răbdare și atenție la fiecare detaliu.",
+      "story": [
+        "Chira Sweets a pornit din dragostea pentru deserturile frumoase și gustoase. Fiecare macaron, tort sau croissant este pregătit în atelierul nostru, din ingrediente atent alese.",
+        "Credem că un desert bun începe cu ingrediente de calitate și se termină cu un zâmbet. De aceea lucrăm în loturi mici, cu grijă pentru gust, aspect și prospețime."
+      ],
+      "founder": {
+        "name": "Chiriac David",
+        "role": "Patiser și fondator Chira Sweets",
+        "lead": "În cuvintele patiserului și fondatorului Chira Sweets.",
+        "story": [
+          "Mă numesc Chiriac David și sunt patiserul din spatele Chira Sweets. Am deschis cofetăria ca să fac deserturi pe care le-aș pune cu drag pe masa celor dragi: frumoase, dar mai ales gustoase.",
+          "Lucrez în loturi mici și aleg ingredientele cu grijă, pentru că un desert bun începe cu ingrediente bune. Fiecare macaron, tort sau croissant e pregătit cu aceeași atenție la detalii.",
+          "Pentru mine, un desert reușit e cel care face un moment obișnuit puțin mai special. Te aștept în cofetărie, la o cafea și ceva dulce."
+        ],
+        "quote": "Un desert bun începe cu ingrediente bune și se termină cu un zâmbet."
+      },
+      "valuesTitle": "Ce ne definește",
+      "values": [
+        {
+          "title": "Calitate",
+          "body": "Ingrediente alese cu grijă și rețete pe care le perfecționăm continuu."
+        },
+        {
+          "title": "Prospețime",
+          "body": "Pregătim deserturile cât mai aproape de momentul în care ajung la tine."
+        },
+        {
+          "title": "Atenție la detalii",
+          "body": "De la gust la decor și ambalaj — fiecare detaliu contează."
+        }
+      ],
+      "visitTitle": "Intră pentru o cafea. Rămâi pentru desert.",
+      "visitBody": "Te așteptăm în cofetărie pentru o cafea și ceva dulce."
+    },
+    "faq": {
+      "metaTitle": "Întrebări frecvente",
+      "metaDescription": "Cum comanzi, livrare, plată, alergeni și păstrarea deserturilor — răspunsuri la întrebările frecvente despre Chira Sweets.",
+      "eyebrow": "Întrebări frecvente",
+      "title": "Întrebări și răspunsuri",
+      "lead": "N-ai găsit răspunsul? Scrie-ne sau sună — te ajutăm cu plăcere.",
+      "items": [
+        {
+          "q": "Cum pot face o comandă?",
+          "a": "Sună-ne sau scrie-ne pe Telegram, Viber, WhatsApp ori Instagram. Pentru evenimente și comenzi mari, completează formularul de pe pagina Evenimente."
+        },
+        {
+          "q": "Cu cât timp înainte trebuie comandat un tort?",
+          "a": "Termenul depinde de mărimea și complexitatea tortului. Scrie-ne cât mai devreme și îți confirmăm termenul exact."
+        },
+        {
+          "q": "Livrați la domiciliu?",
+          "a": "Da, putem livra comanda sau o poți ridica din cofetărie. Condițiile sunt descrise pe pagina Livrare."
+        },
+        {
+          "q": "Cum pot achita comanda?",
+          "a": "Metodele de plată ți le comunicăm la confirmarea comenzii."
+        },
+        {
+          "q": "Unde găsesc informații despre alergeni?",
+          "a": "Pe pagina fiecărui produs. Dacă alergenii nu sunt încă indicați, întreabă-ne înainte de a comanda. În atelier lucrăm și cu alergeni precum gluten, ouă, lapte și nuci."
+        },
+        {
+          "q": "Cum se păstrează deserturile?",
+          "a": "Deserturile cu cremă se păstrează la frigider și se consumă cât mai proaspete. Termenul exact pentru fiecare produs ți-l spunem la comandă."
+        },
+        {
+          "q": "Pot comanda un tort după fotografia mea?",
+          "a": "Da. Trimite-ne fotografia în mesaj și îți spunem ce putem realiza."
+        }
+      ]
+    },
+    "contact": {
+      "metaTitle": "Contact",
+      "metaDescription": "Contactează Chira Sweets: telefon, Telegram, Viber, WhatsApp, Instagram. Cofetărie în Chișinău.",
+      "eyebrow": "Contact",
+      "title": "Scrie-ne sau sună",
+      "lead": "Alege canalul preferat — răspundem rapid.",
+      "channelsTitle": "Canale de contact",
+      "email": "E-mail",
+      "eventsTitle": "Organizezi un eveniment?",
+      "eventsBody": "Trimite-ne o cerere și primești o ofertă.",
+      "eventsCta": "Cere o ofertă"
+    },
+    "privacy": {
+      "metaTitle": "Politica de confidențialitate",
+      "metaDescription": "Cum folosește Chira Sweets datele personale trimise prin site.",
+      "eyebrow": "Legal",
+      "title": "Politica de confidențialitate",
+      "updated": "Ultima actualizare: 26 noiembrie 2026",
+      "sections": [
+        {
+          "title": "Cine suntem",
+          "body": [
+            "Site-ul chirasweets.md aparține cofetăriei Chira Sweets din Chișinău. Datele de identificare ale operatorului (denumire și IDNO) sunt indicate în subsolul site-ului."
+          ]
+        },
+        {
+          "title": "Ce date colectăm",
+          "body": [
+            "Când trimiți formularul de pe pagina Evenimente: numele, numărul de telefon, data evenimentului, numărul de invitați, opțiunea aleasă și mesajul tău. Când trimiți formularul pentru tort: numele, telefonul, data, numărul de porții, preferințele și, dacă o atașezi, fotografia de inspirație.",
+            "Site-ul nu folosește cookie-uri de marketing și nu are conturi de utilizator."
+          ]
+        },
+        {
+          "title": "Cum folosim datele",
+          "body": [
+            "Datele din formular sunt transmise direct cofetăriei printr-un mesaj Telegram, doar pentru a-ți răspunde la cerere. Ele nu sunt stocate pe site.",
+            "Pentru protecția împotriva spamului folosim Cloudflare Turnstile."
+          ]
+        },
+        {
+          "title": "Statistici",
+          "body": [
+            "Folosim Cloudflare Web Analytics pentru a număra vizitele. Serviciul nu folosește cookie-uri și nu te identifică personal."
+          ]
+        },
+        {
+          "title": "Mesagerie și rețele sociale",
+          "body": [
+            "Când ne contactezi prin telefon, Telegram, Viber, WhatsApp sau Instagram, se aplică și politicile de confidențialitate ale acestor servicii."
+          ]
+        },
+        {
+          "title": "Drepturile tale",
+          "body": [
+            "Ai dreptul să afli ce date avem despre tine, să ceri corectarea sau ștergerea lor, conform legislației Republicii Moldova privind protecția datelor cu caracter personal. Scrie-ne la adresa de e-mail de mai jos."
+          ]
+        }
+      ],
+      "contactLabel": "Contact pentru protecția datelor:"
+    },
+    "notFound": {
+      "title": "Pagina nu a fost găsită",
+      "body": "Se pare că desertul acesta nu mai e pe tavă. Încearcă una dintre paginile de mai jos.",
+      "home": "Pagina principală",
+      "catalog": "Catalog"
+    }
+  }
+}

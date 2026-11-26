@@ -83,6 +83,9 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 5. Redirect www → apex (D-029): Rules → Redirect Rules → *Redirect from WWW to root* template, **301**, keep path & query. `https://chirasweets.md` is the only canonical URL; the shop banner QR may point to www.
 6. SSL/TLS → mode **Full (strict)**; Edge Certificates → **Always Use HTTPS** on.
 
+## 9b. CMS (TinaCMS)
+Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project, `TINA_CLIENT_ID` variable, `TINA_TOKEN` secret, `production-content` environment).
+
 ## 10. Protection & analytics
 - **Rate limit the form — REQUIRED before launch**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule). Turnstile alone does not stop a flood of requests reaching the function and Telegram.
 - **Web Analytics** (cookieless): Pages → chira-sweets → Metrics → Enable Web Analytics. The CSP already allows `static.cloudflareinsights.com`.
