@@ -178,12 +178,10 @@ const productFields: TinaField[] = [
 ];
 
 export default defineConfig({
-  // Tina Cloud project (docs/cms.md). Branch = the branch being deployed.
-  branch:
-    process.env.TINA_BRANCH ||
-    process.env.GITHUB_HEAD_REF ||
-    process.env.GITHUB_REF_NAME ||
-    "main",
+  // Saves are commits to `dev` (P-029): they show on the dev preview and go
+  // live with the next release PR dev → main. Same for the admin served from
+  // the production site, so edits never bypass the release.
+  branch: process.env.TINA_BRANCH || "dev",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? null,
   token: process.env.TINA_TOKEN ?? null,
 

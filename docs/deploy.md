@@ -84,7 +84,7 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 6. SSL/TLS → mode **Full (strict)**; Edge Certificates → **Always Use HTTPS** on.
 
 ## 9b. CMS (TinaCMS)
-Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project, `TINA_CLIENT_ID` variable, `TINA_TOKEN` secret, `production-content` environment).
+Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project, `TINA_CLIENT_ID` variable, `TINA_TOKEN` secret, Tina app on the `protect-dev` bypass list). CMS saves go to `dev` and reach production with each release.
 
 ## 10. Protection & analytics
 - **Rate limit the form — REQUIRED before launch**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule). Turnstile alone does not stop a flood of requests reaching the function and Telegram.

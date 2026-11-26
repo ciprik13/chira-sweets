@@ -2,9 +2,8 @@ name: Deploy
 
 # Production: every push to main → chirasweets.md (D-008: prod deploys only from main),
 # after lint/tests pass and @ciprik13 approves the `production` environment.
-# Content-only pushes to main (CMS edits: content/**, public/uploads/**) use the
-# `production-content` environment (no reviewer) so price/photo updates go live
-# without waiting — still only after verification passes (proposal P-028).
+# CMS edits (TinaCMS) are committed to dev: they show on the dev preview right
+# away and reach production with the next release PR dev → main (P-029).
 # Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets.pages.dev,
 # built with draft sample products visible for review.
 on:
@@ -31,27 +30,10 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
-    outputs:
-      content-only: ${{ steps.changes.outputs.content-only }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-          fetch-depth: 0
-      - name: Detect content-only change (CMS edit)
-        id: changes
-        env:
-          BEFORE: ${{ github.event.before }}
-        run: |
-          only=false
-          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
-            changed=$(git diff --name-only "$BEFORE" "$GITHUB_SHA")
-            echo "$changed"
-            if [ -n "$changed" ] && ! echo "$changed" | grep -Ev '^(content/|public/uploads/)' >/dev/null; then
-              only=true
-            fi
-          fi
-          echo "content-only=$only" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
@@ -71,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:
-      name: ${{ github.ref != 'refs/heads/main' && 'preview' || (needs.verify.outputs.content-only == 'true' && 'production-content' || 'production') }}
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
       url: ${{ steps.deploy.outputs.url }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -95,7 +77,8 @@ jobs:
           NEXT_TELEMETRY_DISABLED: "1"
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ vars.TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          TINA_BRANCH: ${{ github.head_ref || github.ref_name }}
+          # The admin always edits dev, whichever branch is being built (P-029).
+          TINA_BRANCH: dev
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_SHOW_DRAFTS: ${{ github.ref == 'refs/heads/main' && '0' || '1' }}
 

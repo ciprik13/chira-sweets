@@ -9,7 +9,7 @@ Everything visitors see is editable at **https://chirasweets.md/admin/**:
 | **Texte site (RO / RU)** | `content/copy/ro.json`, `content/copy/ru.json` | Every text on every page, in both languages |
 | Photos | `public/uploads/` | Uploaded through the CMS |
 
-How it works: a save in the CMS is a Git commit made by Tina Cloud. The commit triggers the Deploy workflow, which **validates all content** (Zod schemas in `src/content/*.ts`, RO/RU parity tests) before building. An invalid edit (a fixed price without an amount, a HEIC photo, a missing Russian name…) fails the build and the live site stays as it was; the error is shown in the GitHub Actions run.
+How it works: a save in the CMS is a Git commit to **`dev`** made by Tina Cloud (P-029). It shows on the preview **https://dev.chira-sweets.pages.dev** within a few minutes and reaches **chirasweets.md with the next release** (PR `dev` → `main`, approved by @ciprik13). Every build **validates all content** (Zod schemas in `src/content/*.ts`, RO/RU parity tests) before building. An invalid edit (a fixed price without an amount, a HEIC photo, a missing Russian name…) fails the build and the live site stays as it was; the error is shown in the GitHub Actions run.
 
 Photos: the build strips EXIF/GPS from every uploaded photo, limits originals to 2400 px and creates WEBP versions at 480 / 960 / 1600 px (`scripts/postbuild.mjs`, `src/lib/images.ts`). Phones download the small version.
 
@@ -29,11 +29,10 @@ Photos: the build strips EXIF/GPS from every uploaded photo, limits originals to
    | Secret | `TINA_TOKEN` | read-only token |
    From then on the Deploy workflow builds `/admin` (`npm run build:cms`). Without them the site builds as before, without the admin.
 5. **Editors** — Tina Cloud → project → **Collaborators** → invite the shop owner by e-mail (no GitHub account needed). Free plan: 2 users.
-6. **Where saves go** — see the decision P-029 in `docs/decisions-log.md`. Recommended:
-   - Tina Cloud project → *Configuration* → branch **`main`**.
-   - GitHub → Settings → Rules → `protect-main` → **Bypass list** → add the **Tina Cloud** GitHub app (only it; people still need PRs).
-   - GitHub → Settings → Environments → **New environment** `production-content` → *Deployment branches: `main` only*, **no required reviewers**. Content-only pushes (only `content/**` and `public/uploads/**` changed) deploy through it right after the checks pass; any change to code still waits for @ciprik13 in `production`.
-   - Keep `dev` in sync: after CMS edits, the next release PR `dev` → `main` must start from an up-to-date `dev` (merge `main` into `dev` first).
+6. **Where saves go: `dev`** (P-029, publish with each release).
+   - Tina Cloud project → *Configuration* → branch **`dev`** (the config also pins `dev`: `tina/config.ts`, `TINA_BRANCH` in the Deploy workflow).
+   - GitHub → Settings → Rules → `protect-dev` → **Bypass list** → add the **Tina Cloud** GitHub app only, so its commits can land on `dev` (people still need PRs).
+   - Each save on `dev` runs CI and redeploys the dev preview. Production changes only through the release PR `dev` → `main`, which still needs @ciprik13's approval on the `production` environment.
 
 ## Local development
 
@@ -63,7 +62,7 @@ Run `npx tinacms build --local --skip-cloud-checks` to check the admin builds; c
 **Schimbă un preț**
 1. *Catalog — produse, prețuri, poze* → *Produse* → alege produsul.
 2. *Preț* → *Tip preț*: „Preț fix”, „De la” sau „La cerere” → *Sumă (lei)* → *Unitate*.
-3. Apasă **Save**. Site-ul se actualizează în câteva minute.
+3. Apasă **Save**. Modificarea apare în câteva minute pe **https://dev.chira-sweets.pages.dev** (site-ul de test) și ajunge pe **chirasweets.md** la următoarea publicare făcută de dezvoltator.
 
 **Adaugă poze**
 1. Deschide produsul → *Fotografii* → **+** → trage poza sau apasă pentru a o alege.
@@ -78,4 +77,4 @@ Run `npx tinacms build --local --skip-cloud-checks` to check the admin builds; c
 
 **Orice text de pe site:** *Texte site (RO / RU)* → fișierul `ro` sau `ru`.
 
-Dacă după salvare site-ul nu s-a schimbat în 10 minute, probabil un câmp e completat greșit (de ex. preț fix fără sumă). Scrie dezvoltatorului — site-ul public rămâne neschimbat până la corectare.
+Dacă după salvare site-ul de test nu s-a schimbat în 10 minute, probabil un câmp e completat greșit (de ex. preț fix fără sumă). Scrie dezvoltatorului — site-ul public nu este afectat.
