@@ -65,12 +65,13 @@
       linear-gradient(var(--color-cream), var(--color-ivory));
   }
 
-  /* Warm backlight behind the emblem, like the illuminated sign in the shop. */
+  /* Deep wine sheen behind the emblem and on dark sections: light without
+     any yellow cast, like velvet catching the light. */
   .glow {
     background-image: radial-gradient(
       closest-side,
-      rgb(246 215 122 / 0.28),
-      rgb(216 168 84 / 0.12) 55%,
+      rgb(150 38 50 / 0.55),
+      rgb(120 26 36 / 0.25) 55%,
       transparent 100%
     );
   }

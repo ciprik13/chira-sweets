@@ -33,12 +33,14 @@ export function HomePage({ locale }: { locale: Locale }) {
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgb(138_42_51/0.9),transparent_60%),radial-gradient(ellipse_at_10%_100%,rgb(47_0_8/0.7),transparent_55%)]"
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 pt-8 pb-14 sm:px-6 sm:pt-12 lg:grid-cols-[1.15fr_1fr] lg:pt-20 lg:pb-20">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-4 pt-8 pb-14 sm:px-6 sm:pt-12 lg:grid-cols-[1.4fr_1fr] lg:pt-20 lg:pb-20">
           <div className="order-2 text-center lg:order-1 lg:text-left">
             <p className="eyebrow text-gold-bright">{t.hero.eyebrow}</p>
-            <h1 className="mt-5 text-[2rem] leading-tight font-normal tracking-[0.08em] uppercase sm:text-5xl lg:text-[3.4rem]">
-              <span className="block">{t.hero.line1}</span>
-              <span className="block text-gold-bright">{t.hero.line2}</span>
+            <h1 className="mt-5 text-[clamp(1.2rem,5.4vw,2.85rem)] lg:text-[clamp(2rem,3.9vw,2.85rem)] leading-[1.25] font-normal tracking-[0.08em] uppercase">
+              <span className="block whitespace-nowrap">{t.hero.line1}</span>
+              <span className="block whitespace-nowrap text-gold-bright">
+                {t.hero.line2}
+              </span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-cream/85 sm:text-lg lg:mx-0">
               {t.hero.lead}
@@ -61,7 +63,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div aria-hidden className="glow absolute -inset-[45%]" />
             <Logo
               variant="round-goldfoil"
-              className="relative w-full drop-shadow-[0_0_24px_rgb(246_215_122/0.25)]"
+              className="relative w-full"
               alt=""
               priority
             />
