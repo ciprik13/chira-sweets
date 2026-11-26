@@ -1,3 +1,5 @@
+import { pagesRo } from "./pages.ro";
+
 /**
  * Romanian UI copy. Drafted by the dev team (D-017); the owner verifies facts and tone.
  * Never state prices, lead times or allergens here — those come from owner-verified data.
@@ -183,6 +185,7 @@ export const ro = {
     privacy: "Politica de confidențialitate",
     rights: "Toate drepturile rezervate.",
   },
+  pages: pagesRo,
 } as const;
 
 type Widen<T> = T extends string

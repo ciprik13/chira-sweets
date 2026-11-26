@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  channelHref,
+  instagramDmHref,
   instagramHref,
   phoneHref,
   telegramHref,
@@ -34,5 +36,12 @@ describe("contact links", () => {
     expect(instagramHref("@chira_sweets")).toBe(
       "https://www.instagram.com/chira_sweets/",
     );
+  });
+
+  it("orders through an Instagram direct message", () => {
+    expect(instagramDmHref("@chira_sweets")).toBe(
+      "https://ig.me/m/chira_sweets",
+    );
+    expect(channelHref("instagram")).toBe("https://ig.me/m/chira_sweets");
   });
 });

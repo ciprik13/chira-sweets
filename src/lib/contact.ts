@@ -34,6 +34,13 @@ export function instagramHref(handle: string = shop.social.instagram): string {
   return `https://www.instagram.com/${handle.replace(/^@/, "")}/`;
 }
 
+/** Opens a direct-message thread with the shop on Instagram (app or web). */
+export function instagramDmHref(
+  handle: string = shop.social.instagram,
+): string {
+  return `https://ig.me/m/${handle.replace(/^@/, "")}`;
+}
+
 export function channelHref(channel: Channel, text?: string): string {
   switch (channel) {
     case "phone":
@@ -45,6 +52,6 @@ export function channelHref(channel: Channel, text?: string): string {
     case "whatsapp":
       return whatsappHref(undefined, text);
     case "instagram":
-      return instagramHref();
+      return instagramDmHref();
   }
 }

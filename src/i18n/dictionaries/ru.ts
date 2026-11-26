@@ -1,3 +1,4 @@
+import { pagesRu } from "./pages.ru";
 import type { Dictionary } from "./ro";
 
 /** Russian UI copy. Drafted by the dev team (D-017); the owner verifies facts and tone. */
@@ -173,4 +174,5 @@ export const ru: Dictionary = {
     privacy: "Политика конфиденциальности",
     rights: "Все права защищены.",
   },
+  pages: pagesRu,
 };

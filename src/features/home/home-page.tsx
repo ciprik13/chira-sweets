@@ -11,6 +11,7 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { instagramHref, phoneHref } from "@/lib/contact";
+import { bakeryJsonLd, jsonLdHtml } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { ProductGrid } from "@/features/catalog/product-card";
 
@@ -358,6 +359,10 @@ export function HomePage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdHtml(bakeryJsonLd(locale))}
+      />
     </>
   );
 }
