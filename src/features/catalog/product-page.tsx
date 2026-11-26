@@ -14,6 +14,7 @@ import type { Product } from "@/content/schema";
 import { localeTags, locales, type Locale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { AddToListButton } from "@/features/order-list/add-to-list";
 import { fill, formatPrice } from "@/lib/format";
 import { absoluteUrl } from "@/lib/site";
 import { ProductGrid } from "./product-card";
@@ -143,14 +144,23 @@ export function ProductPage({
 
             <div className="foil-rule" />
 
-            <OrderSheet
-              dict={dict}
-              variant="wine"
-              message={fill(t.orderMessage, { name })}
-              className="w-full sm:w-auto sm:self-start"
-            >
-              {t.orderThis}
-            </OrderSheet>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <OrderSheet
+                dict={dict}
+                variant="wine"
+                message={fill(t.orderMessage, { name })}
+                className="w-full sm:w-auto"
+              >
+                {t.orderThis}
+              </OrderSheet>
+              <AddToListButton
+                category={product.category}
+                slug={product.slug}
+                labels={dict.orderList}
+                size="lg"
+                className="w-full sm:w-auto"
+              />
+            </div>
           </div>
         </div>
       </section>

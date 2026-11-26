@@ -11,7 +11,11 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
 import { pluralize } from "@/lib/format";
+import { CakeForm } from "@/features/forms/cake-form";
 import { ProductGrid } from "./product-card";
+
+/** Category that hosts the custom-cake request form. */
+export const CAKE_CATEGORY = "torturi";
 
 export type CategoryParams = { category: string };
 
@@ -80,6 +84,31 @@ export function CategoryPage({
           )}
         </div>
       </section>
+      {slug === CAKE_CATEGORY && (
+        <section
+          id="cake-request"
+          className="scroll-mt-24 bg-ivory py-14 sm:py-20"
+          aria-labelledby="cake-request-title"
+        >
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            <p className="eyebrow text-gold-ink">
+              {dict.pages.cakeForm.eyebrow}
+            </p>
+            <h2
+              id="cake-request-title"
+              className="mt-3 text-2xl tracking-[0.1em] text-wine uppercase sm:text-3xl"
+            >
+              {dict.pages.cakeForm.title}
+            </h2>
+            <p className="mt-3 mb-8 text-brown">{dict.pages.cakeForm.lead}</p>
+            <CakeForm
+              locale={locale}
+              dict={dict}
+              privacyHref={href(locale, "privacy")}
+            />
+          </div>
+        </section>
+      )}
     </>
   );
 }

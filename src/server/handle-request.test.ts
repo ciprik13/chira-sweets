@@ -158,3 +158,84 @@ describe("formatEventMessage", () => {
     expect(text).toContain("Candy bar");
   });
 });
+
+describe("cake requests (multipart)", () => {
+  const cake = {
+    type: "cake",
+    locale: "ru",
+    name: "Igor",
+    phone: "+373 79 123 456",
+    date: "2026-12-05",
+    servings: "12",
+    flavour: "Fistic & zmeură",
+    decoration: "Inscripție <La mulți ani>",
+    website: "",
+    turnstileToken: "token",
+  };
+
+  function multipart(fields: Record<string, string>, photo?: File) {
+    const form = new FormData();
+    for (const [k, v] of Object.entries(fields)) form.append(k, v);
+    if (photo) form.append("photo", photo);
+    return new Request(`${ORIGIN}/api/request`, {
+      method: "POST",
+      headers: { origin: ORIGIN },
+      body: form,
+    });
+  }
+
+  it("sends the request and the reference photo", async () => {
+    const f = vi.fn(async (url: string | URL | Request) => {
+      const u = String(url);
+      if (u.includes("turnstile")) return Response.json({ success: true });
+      return new Response("{}", { status: 200 });
+    });
+    const photo = new File([new Uint8Array(1000)], "ref.jpg", {
+      type: "image/jpeg",
+    });
+    const res = await handleRequest(
+      multipart(cake, photo),
+      env,
+      f as typeof fetch,
+      NOW,
+    );
+    expect(res.status).toBe(200);
+    const urls = f.mock.calls.map((c) => String(c[0]));
+    expect(urls[1]).toContain("/sendMessage");
+    expect(urls[2]).toContain("/sendPhoto");
+    const sent = JSON.parse(
+      String((f.mock.calls[1] as unknown as [string, RequestInit])[1].body),
+    ) as { text: string };
+    expect(sent.text).toContain("tort la comandă");
+    expect(sent.text).toContain("&lt;La mulți ani&gt;");
+  });
+
+  it("works without a photo", async () => {
+    const f = mockFetch();
+    const res = await handleRequest(
+      multipart(cake),
+      env,
+      f as typeof fetch,
+      NOW,
+    );
+    expect(res.status).toBe(200);
+    expect(f).toHaveBeenCalledTimes(2);
+  });
+
+  it("rejects a non-image file and too many servings", async () => {
+    const f = mockFetch();
+    const bad = new File(["x"], "virus.exe", {
+      type: "application/octet-stream",
+    });
+    const res = await handleRequest(
+      multipart({ ...cake, servings: "1000" }, bad),
+      env,
+      f as typeof fetch,
+      NOW,
+    );
+    expect(res.status).toBe(400);
+    const body = (await res.json()) as { fields: string[] };
+    expect(body.fields.sort()).toEqual(["photo", "servings"]);
+    expect(f).not.toHaveBeenCalled();
+  });
+});

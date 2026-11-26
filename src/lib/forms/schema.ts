@@ -57,3 +57,56 @@ export const eventFormFields = [
   "message",
 ] as const;
 export type EventFormField = (typeof eventFormFields)[number];
+
+/* ---------- Custom cake request (Phase D) ---------- */
+
+export const PHOTO_MAX_BYTES = 5 * 1024 * 1024;
+export const photoTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/heic",
+  "image/heif",
+] as const;
+
+export function cakeRequestSchema(now: Date = new Date()) {
+  const earliest = isoDay(now, 1);
+  return z.object({
+    type: z.literal("cake"),
+    locale: z.enum(["ro", "ru"]),
+    name: z.string().trim().min(2).max(80),
+    phone: z.string().trim().regex(phonePattern),
+    date: z
+      .string()
+      .regex(isoDate)
+      .refine((v) => v >= earliest, { message: "past" }),
+    servings: z.coerce.number().int().min(1).max(300),
+    flavour: z.string().trim().max(200).default(""),
+    decoration: z.string().trim().max(1000).default(""),
+    website: z.string().max(200).default(""),
+    turnstileToken: z.string().min(1).max(2048),
+  });
+}
+
+export type CakeRequest = z.infer<ReturnType<typeof cakeRequestSchema>>;
+
+export const cakeFormFields = [
+  "name",
+  "phone",
+  "date",
+  "servings",
+  "flavour",
+  "decoration",
+  "photo",
+] as const;
+export type CakeFormField = (typeof cakeFormFields)[number];
+
+/** Returns an error code for an unacceptable reference photo, or null. */
+export function checkPhoto(
+  file: { size: number; type: string } | null | undefined,
+): "type" | "size" | null {
+  if (!file || file.size === 0) return null;
+  if (!(photoTypes as readonly string[]).includes(file.type)) return "type";
+  if (file.size > PHOTO_MAX_BYTES) return "size";
+  return null;
+}

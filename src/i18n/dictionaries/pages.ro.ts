@@ -95,6 +95,32 @@ export const pagesRo = {
       challenge: "Verificarea anti-spam nu s-a încheiat. Încearcă din nou.",
     },
   },
+  cakeForm: {
+    eyebrow: "Tort la comandă",
+    title: "Descrie tortul tău",
+    lead: "Spune-ne data, numărul de porții și ideea ta. Poți atașa o fotografie de inspirație — îți răspundem cu propunere, preț și termen.",
+    date: "Data la care ai nevoie de tort",
+    servings: "Număr de porții",
+    servingsHint: "Aproximativ — te ajutăm să alegi mărimea.",
+    flavour: "Gust preferat",
+    flavourHint: "De exemplu: ciocolată, fistic, fructe de pădure",
+    decoration: "Decor și detalii",
+    decorationHint: "Culori, inscripție, temă, alergii de care să ținem cont.",
+    photo: "Fotografie de inspirație",
+    photoHint: "JPG, PNG, WEBP sau HEIC, până la 5 MB. Nu o păstrăm pe site.",
+    photoRemove: "Elimină fotografia",
+    errors: {
+      date: "Alege o dată de azi încolo",
+      servings: "Scrie un număr între 1 și 300",
+      flavour: "Cel mult 200 de caractere",
+      decoration: "Cel mult 1000 de caractere",
+      photoType: "Alege o imagine JPG, PNG, WEBP sau HEIC",
+      photoSize: "Fotografia trebuie să aibă cel mult 5 MB",
+    },
+    photoFailed:
+      "Cererea a ajuns, dar fotografia nu. Trimite-ne-o pe Telegram, Viber, WhatsApp sau Instagram.",
+    cta: "Formular pentru tort",
+  },
   delivery: {
     metaTitle: "Livrare și ridicare",
     metaDescription:
@@ -206,7 +232,7 @@ export const pagesRo = {
       {
         title: "Ce date colectăm",
         body: [
-          "Când trimiți formularul de pe pagina Evenimente: numele, numărul de telefon, data evenimentului, numărul de invitați, opțiunea aleasă și mesajul tău.",
+          "Când trimiți formularul de pe pagina Evenimente: numele, numărul de telefon, data evenimentului, numărul de invitați, opțiunea aleasă și mesajul tău. Când trimiți formularul pentru tort: numele, telefonul, data, numărul de porții, preferințele și, dacă o atașezi, fotografia de inspirație.",
           "Site-ul nu folosește cookie-uri de marketing și nu are conturi de utilizator.",
         ],
       },

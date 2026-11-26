@@ -3,6 +3,7 @@ import type { Product } from "@/content/schema";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { AddToListButton } from "@/features/order-list/add-to-list";
 import { formatPrice } from "@/lib/format";
 import { ProductVisual } from "./product-visual";
 
@@ -44,6 +45,12 @@ export function ProductCard({
         <p className="mt-auto pt-2 font-serif text-lg text-gold-ink italic">
           {formatPrice(product.price, locale, t)}
         </p>
+        <AddToListButton
+          category={product.category}
+          slug={product.slug}
+          labels={dict.orderList}
+          className="mt-2 w-full px-2 text-[0.7rem] tracking-[0.1em]"
+        />
       </div>
     </article>
   );

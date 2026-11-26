@@ -2,6 +2,8 @@ import Link from "next/link";
 import { InstagramIcon } from "@/components/brand/icons";
 import { Logo } from "@/components/brand/logo";
 import { OrderSheet } from "@/components/contact/order-sheet";
+import { getProducts } from "@/content/catalog";
+import { OrderListSheet } from "@/features/order-list/order-list-sheet";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
@@ -61,6 +63,11 @@ export function SiteHeader({
           >
             <InstagramIcon className="size-5" />
           </a>
+          <OrderListSheet
+            locale={locale}
+            dict={dict}
+            products={getProducts()}
+          />
           <OrderSheet dict={dict} size="sm" className="hidden sm:inline-flex" />
           <MobileNav
             items={items}

@@ -165,10 +165,18 @@ export function HomePage({ locale }: { locale: Locale }) {
             <p className="mt-4 font-serif text-xl text-gold-ink italic">
               {t.cakes.price}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <OrderSheet dict={dict} variant="wine" size="lg">
                 {t.cakes.cta}
               </OrderSheet>
+              <Link
+                href={`${href(locale, "catalog", "torturi")}#cake-request`}
+                className={cn(
+                  buttonVariants({ variant: "outlineDark", size: "lg" }),
+                )}
+              >
+                {dict.pages.cakeForm.cta}
+              </Link>
             </div>
           </div>
           <Podium />
