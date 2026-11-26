@@ -28,10 +28,13 @@ export function SiteFooter({
 
         <div>
           <h2 className="eyebrow text-gold-bright">{dict.footer.pages}</h2>
-          <ul className="mt-4 grid gap-2 text-sm">
+          <ul className="mt-4 grid gap-0.5 text-sm">
             {mainNav(locale, dict).map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-gold-bright">
+                <Link
+                  href={item.href}
+                  className="inline-block py-1.5 hover:text-gold-bright"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -45,7 +48,10 @@ export function SiteFooter({
             <div>
               <dt className="sr-only">{dict.home.contact.phone}</dt>
               <dd>
-                <a href={phoneHref()} className="hover:text-gold-bright">
+                <a
+                  href={phoneHref()}
+                  className="inline-block py-1.5 hover:text-gold-bright"
+                >
                   {shop.phone.display}
                 </a>
               </dd>
@@ -69,7 +75,7 @@ export function SiteFooter({
             href={instagramHref()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm hover:text-gold-bright"
+            className="mt-3 inline-flex min-h-10 items-center gap-2 text-sm hover:text-gold-bright"
           >
             <InstagramIcon className="size-5" />@{shop.social.instagram}
           </a>
@@ -82,7 +88,10 @@ export function SiteFooter({
             © {year} {shop.legalEntity?.name ?? shop.name}. {dict.footer.rights}
             {shop.legalEntity && ` IDNO ${shop.legalEntity.idno}`}
           </p>
-          <Link href={href(locale, "privacy")} className="hover:text-cream">
+          <Link
+            href={href(locale, "privacy")}
+            className="inline-block py-2 hover:text-cream"
+          >
             {dict.footer.privacy}
           </Link>
         </div>

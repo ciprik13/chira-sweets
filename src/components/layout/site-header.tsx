@@ -23,7 +23,7 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-40 border-b border-gold/15 bg-wine text-cream shadow-[0_1px_0_rgb(201_167_110/0.25)]">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-20">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-3 min-[360px]:gap-3 min-[360px]:px-4 sm:gap-4 sm:px-6 lg:h-20">
         <Link
           href={href(locale, "home")}
           className="shrink-0"
@@ -31,7 +31,7 @@ export function SiteHeader({
         >
           <Logo
             variant="horizontal-goldfoil"
-            className="w-36 sm:w-44"
+            className="w-28 min-[360px]:w-32 min-[400px]:w-36 sm:w-44"
             alt=""
             priority
           />
@@ -52,7 +52,7 @@ export function SiteHeader({
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 xl:ml-6">
+        <div className="ml-auto flex items-center gap-1 sm:gap-2 xl:ml-6">
           <LanguageSwitch locale={locale} label={dict.nav.language} />
           <a
             href={instagramHref()}

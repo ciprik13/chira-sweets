@@ -84,7 +84,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 )}
               >
                 <BrandIcon name={f.icon} className="size-8 text-gold-bright" />
-                <span className="eyebrow max-w-[12ch] leading-relaxed text-cream">
+                <span className="eyebrow leading-relaxed tracking-[0.1em] break-words text-cream sm:tracking-[0.18em]">
                   {f.title}
                 </span>
               </li>
@@ -104,7 +104,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             eyebrow={t.categories.eyebrow}
             title={t.categories.title}
           />
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
             {categories.map((c) => (
               <li key={c.slug}>
                 <Link
@@ -220,7 +220,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             {t.events.items.map((item) => (
               <li
                 key={item}
-                className="flex min-h-28 items-end rounded-2xl border border-gold/30 bg-white/[0.04] p-5 text-sm tracking-[0.14em] uppercase"
+                className="flex min-h-28 items-end rounded-2xl border border-gold/30 bg-white/[0.04] p-4 text-sm tracking-[0.08em] break-words uppercase sm:p-5 sm:tracking-[0.14em]"
               >
                 <span>
                   <span

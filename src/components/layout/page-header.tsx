@@ -50,7 +50,7 @@ export function PageHeader({
           </nav>
         )}
         {eyebrow && <p className="eyebrow text-gold-bright">{eyebrow}</p>}
-        <h1 className="mt-3 text-3xl font-normal tracking-[0.1em] uppercase sm:text-5xl">
+        <h1 className="mt-3 text-[1.6rem] font-normal tracking-[0.08em] break-words uppercase min-[360px]:text-3xl sm:text-5xl sm:tracking-[0.1em]">
           {title}
         </h1>
         {lead && (

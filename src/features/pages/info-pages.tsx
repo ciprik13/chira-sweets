@@ -174,7 +174,7 @@ export function DeliveryPage({ locale }: { locale: Locale }) {
                             href={mapsHref(shop.address[locale])}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="underline"
+                            className="inline-block py-1 underline"
                           >
                             {shop.address[locale]} — {c.openMap}
                           </a>
@@ -384,7 +384,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
                     href={mapsHref(shop.address[locale])}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline"
+                    className="inline-block py-1 underline"
                   >
                     {shop.address[locale]} — {c.openMap}
                   </a>
@@ -404,7 +404,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
           </dl>
         </div>
       </section>
-      <section className="bg-wine py-14 text-center text-cream sm:py-16">
+      <section className="bg-wine px-4 py-14 text-center text-cream sm:px-6 sm:py-16">
         <h2 className="text-2xl tracking-[0.1em] uppercase">{t.eventsTitle}</h2>
         <p className="mt-3 text-cream/85">{t.eventsBody}</p>
         <Link

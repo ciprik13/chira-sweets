@@ -100,8 +100,8 @@ export function ProductPage({
       />
 
       <section className="bg-ivory py-10 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
-          <div className="relative overflow-hidden rounded-3xl border border-oak/30">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-2 md:gap-10 lg:gap-14">
+          <div className="relative self-start overflow-hidden rounded-3xl border border-oak/30">
             <ProductVisual
               product={product}
               locale={locale}
@@ -144,7 +144,7 @@ export function ProductPage({
 
             <div className="foil-rule" />
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <OrderSheet
                 dict={dict}
                 variant="wine"

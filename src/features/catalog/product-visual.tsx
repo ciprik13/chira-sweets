@@ -44,7 +44,7 @@ export function ProductVisual({
     >
       <div aria-hidden className="glow absolute inset-0" />
       <BrandIcon name={icon} className="relative size-1/3" />
-      <span className="eyebrow relative text-[0.65rem] text-cream/70">
+      <span className="eyebrow relative px-3 text-center text-[0.6rem] tracking-[0.14em] text-cream/70 sm:text-[0.65rem] sm:tracking-[0.28em]">
         {noPhotoLabel}
       </span>
     </div>

@@ -42,7 +42,7 @@ export function ContactChannels({ dict }: { dict: Dictionary }) {
               href={instagramHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block px-1 text-xs text-gold-ink underline-offset-4 hover:underline"
+              className="mt-1 inline-flex min-h-9 items-center px-1 text-xs text-gold-ink underline-offset-4 hover:underline"
             >
               {dict.home.instagram.cta} →
             </a>

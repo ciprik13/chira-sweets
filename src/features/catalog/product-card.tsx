@@ -31,7 +31,7 @@ export function ProductCard({
         </span>
       )}
       <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
-        <h3 className="text-sm leading-snug font-medium tracking-[0.08em] text-wine uppercase">
+        <h3 className="text-sm leading-snug font-medium tracking-[0.04em] break-words text-wine uppercase sm:tracking-[0.08em]">
           <Link
             href={href(locale, "catalog", product.category, product.slug)}
             className="after:absolute after:inset-0"
@@ -49,7 +49,7 @@ export function ProductCard({
           category={product.category}
           slug={product.slug}
           labels={dict.orderList}
-          className="mt-2 w-full px-2 text-[0.7rem] tracking-[0.1em]"
+          className="mt-2 h-auto min-h-10 w-full px-2 py-2 text-[0.65rem] leading-tight tracking-[0.06em] whitespace-normal sm:text-[0.7rem] sm:tracking-[0.1em]"
         />
       </div>
     </article>
@@ -66,7 +66,7 @@ export function ProductGrid({
   dict: Dictionary;
 }) {
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
       {products.map((p) => (
         <li key={`${p.category}/${p.slug}`}>
           <ProductCard product={p} locale={locale} dict={dict} />
