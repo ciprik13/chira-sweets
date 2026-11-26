@@ -36,8 +36,8 @@ export const shop = {
   },
   /** One line per group of days; rendered with line breaks. */
   hours: {
-    ro: "Luni–Sâmbătă: 6:30–10:30\nDuminică: 11:00–20:30",
-    ru: "Пн–Сб: 6:30–10:30\nВс: 11:00–20:30",
+    ro: "Luni–Sâmbătă: 6:30–20:30\nDuminică: 11:00–20:30",
+    ru: "Пн–Сб: 6:30–20:30\nВс: 11:00–20:30",
   } as { ro: string; ru: string } | null,
   /** Same hours for schema.org (openingHoursSpecification). */
   openingHours: [
@@ -51,7 +51,7 @@ export const shop = {
         "Saturday",
       ],
       opens: "06:30",
-      closes: "10:30",
+      closes: "20:30",
     },
     { days: ["Sunday"], opens: "11:00", closes: "20:30" },
   ],
