@@ -1,0 +1,18 @@
+name: Task
+description: Technical work that is not a user-facing story (setup, refactor, infra)
+title: "[Task]: "
+labels: ["type: task"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Definition of done
+      placeholder: "- [ ] ..."
+    validations:
+      required: true

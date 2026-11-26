@@ -1,0 +1,33 @@
+name: User story
+description: A feature described from the user's point of view
+title: "[Story]: "
+labels: ["type: story"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      description: As a <role>, I want <capability>, so that <benefit>.
+      placeholder: As a customer, I want to filter desserts by allergen, so that I can order safely.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable conditions, preferably Given / When / Then.
+      placeholder: |
+        - Given ..., when ..., then ...
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (MoSCoW)
+      options: [Must, Should, Could, Won't (this release)]
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / design links
