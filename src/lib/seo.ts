@@ -17,14 +17,13 @@ export function bakeryJsonLd(locale: Locale) {
     email: shop.email,
     sameAs: [instagramHref()],
     areaServed: { "@type": "City", name: "Chișinău" },
-    ...(shop.address && {
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: shop.address[locale],
-        addressLocality: "Chișinău",
-        addressCountry: "MD",
-      },
-    }),
+    address: { "@type": "PostalAddress", ...shop.postalAddress },
+    openingHoursSpecification: shop.openingHours.map((h) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: h.days,
+      opens: h.opens,
+      closes: h.closes,
+    })),
   };
 }
 

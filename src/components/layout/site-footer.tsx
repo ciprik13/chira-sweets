@@ -56,7 +56,9 @@ export function SiteFooter({
             </div>
             <div>
               <dt className="text-cream/60">{dict.home.contact.hours}</dt>
-              <dd>{shop.hours?.[locale] ?? comingSoon}</dd>
+              <dd className="whitespace-pre-line">
+                {shop.hours?.[locale] ?? comingSoon}
+              </dd>
             </div>
           </dl>
         </div>

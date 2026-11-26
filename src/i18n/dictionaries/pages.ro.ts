@@ -139,14 +139,22 @@ export const pagesRo = {
   about: {
     metaTitle: "Despre noi",
     metaDescription:
-      "Chira Sweets — cofetărie artizanală în Chișinău. Calitate, prospețime și atenție la detalii în fiecare desert.",
+      "Chira Sweets — cofetăria lui Chiriac David, patiser și fondator. Deserturi făcute cu grijă, în Durlești, Chișinău.",
     eyebrow: "Despre noi",
     title: "Chira Sweets",
-    lead: "O cofetărie din Chișinău unde deserturile se fac cu răbdare și atenție la fiecare detaliu.",
+    lead: "În cuvintele patiserului și fondatorului Chira Sweets.",
+    // DRAFT in the founder's voice — to be read and approved by Chiriac David (D-017).
     story: [
-      "Chira Sweets a pornit din dragostea pentru deserturile frumoase și gustoase. Fiecare macaron, tort sau croissant este pregătit în atelierul nostru, din ingrediente atent alese.",
-      "Credem că un desert bun începe cu ingrediente de calitate și se termină cu un zâmbet. De aceea lucrăm în loturi mici, cu grijă pentru gust, aspect și prospețime.",
+      "Mă numesc Chiriac David și sunt patiserul din spatele Chira Sweets. Am deschis cofetăria ca să fac deserturi pe care le-aș pune cu drag pe masa celor dragi: frumoase, dar mai ales gustoase.",
+      "Lucrez în loturi mici și aleg ingredientele cu grijă, pentru că un desert bun începe cu ingrediente bune. Fiecare macaron, tort sau croissant e pregătit cu aceeași atenție la detalii.",
+      "Pentru mine, un desert reușit e cel care face un moment obișnuit puțin mai special. Te aștept în cofetărie, la o cafea și ceva dulce.",
     ],
+    quote:
+      "Un desert bun începe cu ingrediente bune și se termină cu un zâmbet.",
+    founder: {
+      name: "Chiriac David",
+      role: "Patiser și fondator Chira Sweets",
+    },
     valuesTitle: "Ce ne definește",
     values: [
       {

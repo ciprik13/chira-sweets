@@ -43,10 +43,6 @@ export function ProductVisual({
       )}
     >
       <div aria-hidden className="glow absolute inset-0" />
-      <div
-        aria-hidden
-        className="absolute inset-x-[18%] bottom-[16%] h-[14%] rounded-[50%] bg-[#a8454d]"
-      />
       <BrandIcon name={icon} className="relative size-1/3" />
       <span className="eyebrow relative text-[0.65rem] text-cream/70">
         {noPhotoLabel}

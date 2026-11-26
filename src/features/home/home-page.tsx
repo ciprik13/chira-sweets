@@ -291,9 +291,14 @@ export function HomePage({ locale }: { locale: Locale }) {
             className="mt-8"
           />
           <p className="mt-6 leading-relaxed text-brown">{t.about.body}</p>
-          <p className="mt-6 font-serif text-xl text-gold-ink">
-            {dict.footer.tagline}
-          </p>
+          <figure className="mt-8">
+            <blockquote className="font-serif text-2xl text-wine">
+              “{dict.pages.about.quote}”
+            </blockquote>
+            <figcaption className="eyebrow mt-3 text-gold-ink">
+              {dict.pages.about.founder.name} · {dict.pages.about.founder.role}
+            </figcaption>
+          </figure>
           <Link
             href={href(locale, "about")}
             className={cn(buttonVariants({ variant: "link" }), "mt-6")}
@@ -419,12 +424,12 @@ function ContactItem({
     <div className="flex flex-col items-center gap-3 rounded-2xl border border-gold/25 bg-white/[0.04] p-7 text-center [&>svg]:size-6 [&>svg]:text-gold-bright">
       {icon}
       <dt className="eyebrow text-cream/70">{label}</dt>
-      <dd className="text-lg">{children}</dd>
+      <dd className="text-lg whitespace-pre-line">{children}</dd>
     </div>
   );
 }
 
-/** Decorative podiums, echoing the product stands on the shop banners. Replaced by a real photo when C-04 arrives. */
+/** Decorative panel until a real cake photo arrives (C-04). */
 function Podium() {
   return (
     <div
@@ -432,9 +437,7 @@ function Podium() {
       className="relative mx-auto aspect-[4/3] w-full max-w-lg overflow-hidden rounded-3xl bg-wine"
     >
       <div className="glow absolute inset-x-0 -top-1/3 h-full" />
-      <div className="absolute inset-x-[12%] bottom-[14%] h-[22%] rounded-[50%] bg-[#a8454d] shadow-[inset_0_-10px_20px_rgb(47_0_8/0.35)]" />
-      <div className="absolute inset-x-[12%] bottom-[24%] h-[16%] rounded-[50%] bg-[#c0646b]" />
-      <div className="absolute bottom-[34%] left-1/2 flex -translate-x-1/2 flex-col items-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         <BrandIcon
           name="cake"
           className="size-28 text-gold-bright sm:size-36"

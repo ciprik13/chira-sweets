@@ -189,7 +189,7 @@ export function DeliveryPage({ locale }: { locale: Locale }) {
                         className="size-4 shrink-0 text-gold-ink"
                         aria-hidden
                       />
-                      <dd>
+                      <dd className="whitespace-pre-line">
                         {shop.hours?.[locale] ??
                           `${dict.home.contact.hours}: ${c.comingSoon}`}
                       </dd>
@@ -229,15 +229,35 @@ export function AboutPage({ locale }: { locale: Locale }) {
       />
       <section className="bg-ivory py-14 sm:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
-          <div className="grid gap-5 text-lg leading-relaxed text-brown">
+          <article className="grid gap-5 text-lg leading-relaxed text-brown">
             {t.story.map((p) => (
               <p key={p}>{p}</p>
             ))}
-          </div>
-          <div className="fluted relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-3xl border border-oak/40">
+            <footer className="mt-2 flex items-center gap-4">
+              <span aria-hidden className="foil-rule w-12" />
+              <span>
+                <span className="block font-serif text-2xl text-wine">
+                  {t.founder.name}
+                </span>
+                <span className="eyebrow text-gold-ink">{t.founder.role}</span>
+              </span>
+            </footer>
+          </article>
+          <figure className="relative flex aspect-[4/5] flex-col items-center justify-center gap-8 overflow-hidden rounded-3xl bg-wine p-10 text-center text-cream">
             <div aria-hidden className="glow absolute inset-0" />
-            <Logo variant="round-wine" className="relative w-1/2" alt="" />
-          </div>
+            <Logo variant="round-goldfoil" className="relative w-24" alt="" />
+            <blockquote className="relative font-serif text-2xl leading-snug text-cream sm:text-3xl">
+              “{t.quote}”
+            </blockquote>
+            <figcaption className="relative">
+              <span className="block text-sm tracking-[0.2em] text-gold-bright uppercase">
+                {t.founder.name}
+              </span>
+              <span className="mt-1 block text-xs text-cream/70">
+                {t.founder.role}
+              </span>
+            </figcaption>
+          </figure>
         </div>
       </section>
       <section className="fluted py-14 sm:py-20" aria-labelledby="values">
@@ -377,7 +397,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
               <dt className="eyebrow text-gold-ink">
                 {dict.home.contact.hours}
               </dt>
-              <dd className="mt-2 text-ink">
+              <dd className="mt-2 whitespace-pre-line text-ink">
                 {shop.hours?.[locale] ?? c.comingSoon}
               </dd>
             </div>

@@ -22,9 +22,40 @@ export const shop = {
     tiktok: null as string | null,
   },
   email: "contact@chirasweets.md",
-  /** Pending owner input (Q-03, Q-08). `null` renders an "in curând / скоро" placeholder. */
-  address: null as { ro: string; ru: string } | null,
-  hours: null as { ro: string; ru: string } | null,
+  /** Pickup address and hours (C-07), confirmed by the owner on 2026-11-26. */
+  address: {
+    ro: "str. Tudor Vladimirescu 69, Durlești",
+    ru: "ул. Тудор Владимиреску, 69, Дурлешты",
+  } as { ro: string; ru: string } | null,
+  /** Address parts for schema.org. */
+  postalAddress: {
+    streetAddress: "str. Tudor Vladimirescu 69",
+    addressLocality: "Durlești",
+    addressRegion: "Chișinău",
+    addressCountry: "MD",
+  },
+  /** One line per group of days; rendered with line breaks. */
+  hours: {
+    ro: "Luni–Sâmbătă: 6:30–10:30\nDuminică: 11:00–20:30",
+    ru: "Пн–Сб: 6:30–10:30\nВс: 11:00–20:30",
+  } as { ro: string; ru: string } | null,
+  /** Same hours for schema.org (openingHoursSpecification). */
+  openingHours: [
+    {
+      days: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "06:30",
+      closes: "10:30",
+    },
+    { days: ["Sunday"], opens: "11:00", closes: "20:30" },
+  ],
+  /** Pending owner input (Q-08). `null` renders nothing. */
   legalEntity: null as { name: string; idno: string } | null,
 } as const;
 

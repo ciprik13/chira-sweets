@@ -46,6 +46,17 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Even line lengths: "Torturi pentru / momentele tale", not one orphan word. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-gold-bright);
     outline-offset: 3px;
