@@ -61,13 +61,10 @@ export type EventFormField = (typeof eventFormFields)[number];
 /* ---------- Custom cake request (Phase D) ---------- */
 
 export const PHOTO_MAX_BYTES = 5 * 1024 * 1024;
-export const photoTypes = [
-  "image/jpeg",
-  "image/png",
-  "image/webp",
-  "image/heic",
-  "image/heif",
-] as const;
+/** What the server accepts (checked by magic bytes, see image.ts). */
+export const photoTypes = ["image/jpeg", "image/png", "image/webp"] as const;
+/** What the file picker offers: iPhone HEIC is converted to JPEG in the browser. */
+export const photoPickerTypes = [...photoTypes, "image/heic", "image/heif"];
 
 export function cakeRequestSchema(now: Date = new Date()) {
   const earliest = isoDay(now, 1);

@@ -10,6 +10,8 @@ How it works: `.github/workflows/deploy.yml` builds the static site (`npm run bu
 | push to `dev` | Preview → `dev.chira-sweets.pages.dev` | yes |
 | PR into `dev` / `main` | Preview → `<branch>.chira-sweets.pages.dev`, URL commented on the PR | yes |
 
+Preview URLs (`*.chira-sweets.pages.dev` branch and deployment aliases) are served by Cloudflare with `X-Robots-Tag: noindex` (checked on 2026-11-26), so draft products shown there are not indexed. Draft product pages also carry `<meta name="robots" content="noindex">`.
+
 No secret is ever committed. Everything below is done once, by the account owner (@ciprik13).
 
 ---
@@ -37,7 +39,14 @@ Settings → Secrets and variables → Actions:
 | Secret | `CLOUDFLARE_ACCOUNT_ID` | account ID from step 1 |
 | Variable | `TURNSTILE_SITE_KEY` | site key from step 5 (public) |
 
-Settings → Environments: create `production` and add a protection rule restricting it to the `main` branch.
+Settings → Environments → **New environment** `production` (admin only):
+- **Required reviewers: @ciprik13** — every production deploy waits for this approval.
+- **Deployment branches and tags: Selected branches → `main`** only.
+- Prevent self-review: on.
+
+Create `preview` too (no reviewers) so preview deploys show up under Environments.
+
+The deploy workflow runs a `verify` job (lint, format, typecheck, tests, audit) and the deploy job `needs` it, so nothing is deployed without green checks.
 
 ## 5. Turnstile (anti-spam for the form)
 Cloudflare → Turnstile → Add widget:
@@ -75,11 +84,13 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 6. SSL/TLS → mode **Full (strict)**; Edge Certificates → **Always Use HTTPS** on.
 
 ## 10. Protection & analytics
-- **Rate limit the form**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule).
+- **Rate limit the form — REQUIRED before launch**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule). Turnstile alone does not stop a flood of requests reaching the function and Telegram.
 - **Web Analytics** (cookieless): Pages → chira-sweets → Metrics → Enable Web Analytics. The CSP already allows `static.cloudflareinsights.com`.
 - **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (address only in Cloudflare, never in the repo).
 
 ## 11. Launch checklist
+- [ ] **WAF rate-limit rule on `/api/request` active** (step 10) — launch blocker
+- [ ] `production` environment requires @ciprik13's approval (step 4)
 - [ ] https://chirasweets.md/ redirects to `/ro/`, www redirects to apex, HTTPS only
 - [ ] Shop banner QR code opens the site on a phone
 - [ ] Events form on production sends a Telegram message to the owner within a minute

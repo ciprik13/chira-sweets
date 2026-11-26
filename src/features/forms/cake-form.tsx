@@ -13,7 +13,7 @@ import {
   cakeRequestSchema,
   checkPhoto,
   isoDay,
-  photoTypes,
+  photoPickerTypes,
   type CakeFormField,
 } from "@/lib/forms/schema";
 import { cn } from "@/lib/utils";
@@ -60,8 +60,12 @@ export function CakeForm({
     fd.set("locale", locale);
     fd.set("turnstileToken", token || "pending");
     const photo = fd.get("photo");
-    const file = photo instanceof File && photo.size > 0 ? photo : null;
-    if (!file) fd.delete("photo");
+    const picked = photo instanceof File && photo.size > 0 ? photo : null;
+    // Re-encode in the browser: drops EXIF/GPS, applies rotation, converts
+    // iPhone HEIC (where the browser can decode it) and shrinks large photos.
+    const file = picked ? await reencodeAsJpeg(picked) : null;
+    if (file) fd.set("photo", file, "referinta.jpg");
+    else fd.delete("photo");
 
     const fields = Object.fromEntries(
       [...fd.entries()].filter(([k]) => k !== "photo"),
@@ -74,7 +78,7 @@ export function CakeForm({
         if (key in messages && !next[key]) next[key] = messages[key];
       }
     }
-    const photoError = checkPhoto(file);
+    const photoError = picked && !file ? "type" : checkPhoto(file);
     if (photoError)
       next.photo =
         photoError === "type" ? t.errors.photoType : t.errors.photoSize;
@@ -253,7 +257,7 @@ export function CakeForm({
                 ref={fileRef}
                 {...field("photo")}
                 type="file"
-                accept={photoTypes.join(",")}
+                accept={photoPickerTypes.join(",")}
                 className="sr-only"
                 onChange={(e) => setPhotoName(e.target.files?.[0]?.name ?? "")}
               />
@@ -336,6 +340,47 @@ export function CakeForm({
       </form>
     </>
   );
+}
+
+const MAX_EDGE = 2560;
+
+/** Decodes an image and returns a metadata-free JPEG, or null if it can't be decoded. */
+async function reencodeAsJpeg(file: File): Promise<File | null> {
+  let source: ImageBitmap | HTMLImageElement | null = null;
+  try {
+    source = await createImageBitmap(file); // honours EXIF orientation
+  } catch {
+    // Safari decodes HEIC in <img> but not always in createImageBitmap.
+    const url = URL.createObjectURL(file);
+    try {
+      const img = new Image();
+      img.src = url;
+      await img.decode();
+      source = img;
+    } catch {
+      source = null;
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+  if (!source) return null;
+  const w = "naturalWidth" in source ? source.naturalWidth : source.width;
+  const h = "naturalHeight" in source ? source.naturalHeight : source.height;
+  if (!w || !h) return null;
+  const scale = Math.min(1, MAX_EDGE / Math.max(w, h));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(w * scale);
+  canvas.height = Math.round(h * scale);
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
+  if ("close" in source) source.close();
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob(resolve, "image/jpeg", 0.88),
+  );
+  return blob
+    ? new File([blob], "referinta.jpg", { type: "image/jpeg" })
+    : null;
 }
 
 const inputClass =

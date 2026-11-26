@@ -107,7 +107,8 @@ export const pagesRo = {
     decoration: "Decor și detalii",
     decorationHint: "Culori, inscripție, temă, alergii de care să ținem cont.",
     photo: "Fotografie de inspirație",
-    photoHint: "JPG, PNG, WEBP sau HEIC, până la 5 MB. Nu o păstrăm pe site.",
+    photoHint:
+      "JPG, PNG, WEBP sau HEIC. Datele de localizare din fotografie sunt eliminate, iar fotografia nu este păstrată pe site.",
     photoRemove: "Elimină fotografia",
     errors: {
       date: "Alege o dată de azi încolo",

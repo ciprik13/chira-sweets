@@ -42,7 +42,7 @@ export function ProductCard({
         {product.size && (
           <p className="text-xs text-brown">{product.size[locale]}</p>
         )}
-        <p className="mt-auto pt-2 font-serif text-lg text-gold-ink italic">
+        <p className="mt-auto pt-2 font-serif text-lg text-gold-ink">
           {formatPrice(product.price, locale, t)}
         </p>
         <AddToListButton

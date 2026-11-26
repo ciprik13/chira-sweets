@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cormorant, jost } from "@/app/fonts";
+import { gilda, jost } from "@/app/fonts";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { MobileActionBar } from "./mobile-action-bar";
@@ -20,7 +20,7 @@ export function LocaleShell({
   const dict = getDictionary(locale);
 
   return (
-    <html lang={locale} className={`${jost.variable} ${cormorant.variable}`}>
+    <html lang={locale} className={`${jost.variable} ${gilda.variable}`}>
       <body className="min-h-dvh">
         <a
           href="#content"

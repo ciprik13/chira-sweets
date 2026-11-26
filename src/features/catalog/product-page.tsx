@@ -120,7 +120,7 @@ export function ProductPage({
             <dl className="grid gap-6">
               <div>
                 <dt className="eyebrow text-gold-ink">{t.price}</dt>
-                <dd className="mt-2 font-serif text-3xl text-wine italic">
+                <dd className="mt-2 font-serif text-3xl text-wine">
                   {formatPrice(product.price, locale, t)}
                 </dd>
               </div>

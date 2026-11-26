@@ -1,6 +1,6 @@
+import { detectImageKind, imageMime, stripMetadata } from "../lib/forms/image";
 import {
   cakeRequestSchema,
-  checkPhoto,
   eventRequestSchema,
   PHOTO_MAX_BYTES,
   type CakeRequest,
@@ -121,9 +121,16 @@ export async function handleRequest(
   const fields = parsed.success
     ? []
     : [...new Set(parsed.error.issues.map((i) => String(i.path[0])))];
-  // Photos only travel with cake requests.
-  if (photo && (body.type !== "cake" || checkPhoto(photo)))
-    fields.push("photo");
+  // Photos only travel with cake requests. The type comes from the bytes, and
+  // EXIF/GPS and other metadata are removed before the photo is forwarded.
+  let cleanPhoto: File | null = null;
+  if (photo) {
+    cleanPhoto =
+      body.type === "cake" && photo.size <= PHOTO_MAX_BYTES
+        ? await sanitizePhoto(photo)
+        : null;
+    if (!cleanPhoto) fields.push("photo");
+  }
   if (!parsed.success || fields.length) {
     return json(400, { error: "invalid", fields });
   }
@@ -150,12 +157,12 @@ export async function handleRequest(
   );
   if (!sent) return json(502, { error: "delivery" });
 
-  if (photo && data.type === "cake") {
+  if (cleanPhoto && data.type === "cake") {
     // The request text already arrived; a failed photo is reported but not fatal.
     const photoSent = await sendTelegramFile(
       env.TELEGRAM_BOT_TOKEN,
       env.TELEGRAM_CHAT_ID,
-      photo,
+      cleanPhoto,
       `Foto de referință — ${data.name}, ${data.phone}`,
       fetchImpl,
     );
@@ -165,7 +172,23 @@ export async function handleRequest(
   return json(200, { ok: true });
 }
 
-/** jpg/png/webp as a photo; HEIC (iPhone) as a document, which Telegram accepts. */
+/** Re-checks the upload by magic bytes and returns a metadata-free copy. */
+async function sanitizePhoto(file: File): Promise<File | null> {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const kind = detectImageKind(bytes);
+  if (!kind) return null;
+  const clean = stripMetadata(bytes, kind);
+  if (!clean) return null;
+  return new File(
+    [new Uint8Array(clean)],
+    `referinta.${kind === "jpeg" ? "jpg" : kind}`,
+    {
+      type: imageMime[kind],
+    },
+  );
+}
+
+/** Sends the cleaned photo (JPEG, PNG or WEBP) to the chat. */
 async function sendTelegramFile(
   token: string,
   chatId: string,
@@ -173,14 +196,13 @@ async function sendTelegramFile(
   caption: string,
   fetchImpl: Fetch,
 ): Promise<boolean> {
-  const asPhoto = ["image/jpeg", "image/png", "image/webp"].includes(file.type);
   const form = new FormData();
   form.append("chat_id", chatId);
   form.append("caption", caption.slice(0, 1000));
-  form.append(asPhoto ? "photo" : "document", file, file.name || "referinta");
+  form.append("photo", file, file.name);
   try {
     const res = await fetchImpl(
-      `https://api.telegram.org/bot${token}/${asPhoto ? "sendPhoto" : "sendDocument"}`,
+      `https://api.telegram.org/bot${token}/sendPhoto`,
       { method: "POST", body: form },
     );
     return res.ok;

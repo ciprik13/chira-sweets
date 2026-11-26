@@ -162,7 +162,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <p className="mt-6 max-w-xl leading-relaxed text-brown">
               {t.cakes.body}
             </p>
-            <p className="mt-4 font-serif text-xl text-gold-ink italic">
+            <p className="mt-4 font-serif text-xl text-gold-ink">
               {t.cakes.price}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -289,7 +289,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             className="mt-8"
           />
           <p className="mt-6 leading-relaxed text-brown">{t.about.body}</p>
-          <p className="mt-6 font-serif text-xl text-gold-ink italic">
+          <p className="mt-6 font-serif text-xl text-gold-ink">
             {dict.footer.tagline}
           </p>
           <Link

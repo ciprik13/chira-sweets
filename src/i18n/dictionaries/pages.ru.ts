@@ -106,7 +106,8 @@ export const pagesRu: Dictionary["pages"] = {
     decoration: "Оформление и детали",
     decorationHint: "Цвета, надпись, тематика, аллергии, которые нужно учесть.",
     photo: "Фото для вдохновения",
-    photoHint: "JPG, PNG, WEBP или HEIC, до 5 МБ. На сайте не хранится.",
+    photoHint:
+      "JPG, PNG, WEBP или HEIC. Данные о местоположении из фото удаляются, на сайте фото не хранится.",
     photoRemove: "Удалить фото",
     errors: {
       date: "Выберите дату не раньше сегодняшней",

@@ -79,10 +79,7 @@ export function EventsPage({ locale }: { locale: Locale }) {
                 key={s.title}
                 className="flex gap-4 rounded-2xl bg-white/70 p-6"
               >
-                <span
-                  className="font-serif text-4xl text-gold-ink italic"
-                  aria-hidden
-                >
+                <span className="font-serif text-4xl text-gold-ink" aria-hidden>
                   {i + 1}
                 </span>
                 <span>
@@ -94,7 +91,7 @@ export function EventsPage({ locale }: { locale: Locale }) {
               </li>
             ))}
           </ol>
-          <p className="mt-6 font-serif text-lg text-gold-ink italic">
+          <p className="mt-6 font-serif text-lg text-gold-ink">
             {t.pricingNote}
           </p>
         </div>
@@ -257,9 +254,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
                 key={v.title}
                 className="rounded-2xl border border-oak/40 bg-white/90 p-7 text-center"
               >
-                <h3 className="font-serif text-2xl text-gold-ink italic">
-                  {v.title}
-                </h3>
+                <h3 className="font-serif text-2xl text-gold-ink">{v.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-brown">
                   {v.body}
                 </p>
@@ -456,7 +451,7 @@ export function NotFoundPage({ locale }: { locale: Locale }) {
   return (
     <section className="fluted py-20 sm:py-28">
       <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
-        <p className="font-serif text-7xl text-gold-ink italic">404</p>
+        <p className="font-serif text-7xl text-gold-ink">404</p>
         <h1 className="mt-4 text-2xl tracking-[0.1em] text-wine uppercase sm:text-3xl">
           {t.title}
         </h1>

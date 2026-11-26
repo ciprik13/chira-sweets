@@ -184,14 +184,39 @@ describe("cake requests (multipart)", () => {
     });
   }
 
-  it("sends the request and the reference photo", async () => {
-    const f = vi.fn(async (url: string | URL | Request) => {
+  /** Minimal JPEG with an EXIF/GPS segment. */
+  const jpegWithGps = () => {
+    const exif = [..."Exif\0\0GPS-47.02N-28.83E"].map((c) => c.charCodeAt(0));
+    return new Uint8Array([
+      0xff,
+      0xd8,
+      0xff,
+      0xe1,
+      0,
+      exif.length + 2,
+      ...exif,
+      0xff,
+      0xda,
+      0,
+      2,
+      0x11,
+      0x22,
+      0xff,
+      0xd9,
+    ]);
+  };
+
+  it("sends the request and the photo without EXIF/GPS", async () => {
+    let photoBody: FormData | undefined;
+    const f = vi.fn(async (url: string | URL | Request, init?: RequestInit) => {
       const u = String(url);
       if (u.includes("turnstile")) return Response.json({ success: true });
+      if (u.includes("/sendPhoto")) photoBody = init?.body as FormData;
       return new Response("{}", { status: 200 });
     });
-    const photo = new File([new Uint8Array(1000)], "ref.jpg", {
-      type: "image/jpeg",
+    // The browser-declared type is ignored; bytes decide.
+    const photo = new File([jpegWithGps()], "IMG_0001.HEIC", {
+      type: "image/heic",
     });
     const res = await handleRequest(
       multipart(cake, photo),
@@ -208,6 +233,30 @@ describe("cake requests (multipart)", () => {
     ) as { text: string };
     expect(sent.text).toContain("tort la comandă");
     expect(sent.text).toContain("&lt;La mulți ani&gt;");
+    const forwarded = photoBody?.get("photo") as File;
+    expect(forwarded.type).toBe("image/jpeg");
+    const text = new TextDecoder("latin1").decode(
+      await forwarded.arrayBuffer(),
+    );
+    expect(text).not.toContain("GPS");
+  });
+
+  it("rejects a file that only claims to be an image", async () => {
+    const f = mockFetch();
+    const fake = new File(["MZ\x90 not an image"], "cake.jpg", {
+      type: "image/jpeg",
+    });
+    const res = await handleRequest(
+      multipart(cake, fake),
+      env,
+      f as typeof fetch,
+      NOW,
+    );
+    expect(res.status).toBe(400);
+    expect(((await res.json()) as { fields: string[] }).fields).toEqual([
+      "photo",
+    ]);
+    expect(f).not.toHaveBeenCalled();
   });
 
   it("works without a photo", async () => {

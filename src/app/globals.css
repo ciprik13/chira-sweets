@@ -22,7 +22,7 @@
   --color-brown: #5a2a1e;
 
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-gilda), Georgia, "Times New Roman", serif;
 
   --tracking-brand: 0.28em;
 }

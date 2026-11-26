@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Gilda_Display, Jost } from "next/font/google";
 
 /** Jost: geometric, Futura-like — closest free match to the wordmark (Q-09 pending). */
 export const jost = Jost({
@@ -7,11 +7,14 @@ export const jost = Jost({
   display: "swap",
 });
 
-/** Cormorant Garamond italic: small accent lines only. */
-export const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+/**
+ * Gilda Display: display serif from the design canvas, for accent lines only.
+ * It has no Cyrillic and no italic: Russian text falls back per glyph to the
+ * serif stack in globals.css (Georgia), and it is always set upright.
+ */
+export const gilda = Gilda_Display({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  variable: "--font-gilda",
   display: "swap",
 });
