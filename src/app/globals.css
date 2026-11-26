@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Design tokens are introduced in the design-system PR. */
+body {
+  font-family: system-ui, sans-serif;
+}
