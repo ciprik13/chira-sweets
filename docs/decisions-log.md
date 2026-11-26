@@ -26,5 +26,16 @@ All decisions by @ciprik13 unless noted.
 | D-021 | 2026-11-24 | Target launch: 2026-12-01. One visual direction instead of three. | Business deadline (QR on shop banner already points to the domain). |
 | D-022 | 2026-11-24 | Analytics: Cloudflare Web Analytics (cookieless, no consent banner). | Privacy-friendly, free. |
 
+## Proposed — pending @ciprik13 (PR #5)
+Built and tested in PR #5, outside the MVP scope in PRD §3/§6. Each needs an explicit keep or drop; dropped items are removed from the PR before merge.
+
+| ID | Proposal | Why | Cost / risk |
+|---|---|---|---|
+| P-023 | Instagram as an order channel (DM link `ig.me/m/chira_sweets`) next to phone, Telegram, Viber, WhatsApp. | Customers already order via Instagram (D-010). | None; one link. |
+| P-024 | Catalog search and filters (text, category, "free from" on owner-verified allergens only, price). Client-side, state in the URL. | Faster for G2 once the full catalog is in. | Small JS bundle; no server. |
+| P-025 | "Lista mea": several products sent as one messenger message (WhatsApp pre-filled; copied for Telegram / Viber / Instagram). Browser storage only, no checkout. | One message instead of many for multi-item orders; keeps D-009 (no cart/payment). | Can be mistaken for a cart; copy says it is not a payment. |
+| P-026 | Custom-cake request form with optional reference photo → Telegram. Photo type checked by magic bytes, re-encoded in the browser, EXIF/GPS stripped on the server, not stored. | Supports persona Igor (custom cake); structured requests. | Personal photo passes through the function; privacy page updated. |
+| P-027 | Accent serif: Gilda Display (+ Jost). Gilda has no Cyrillic or italic: RU accent lines fall back to Georgia. | Matches the design canvas. | Mixed serif on RU pages unless a Cyrillic-capable alternative is chosen. |
+
 ## Open items
 See `docs/open-questions.md`.
