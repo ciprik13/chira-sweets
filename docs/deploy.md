@@ -86,7 +86,7 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 ## 10. Protection & analytics
 - **Rate limit the form — REQUIRED before launch**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule). Turnstile alone does not stop a flood of requests reaching the function and Telegram.
 - **Web Analytics** (cookieless): Pages → chira-sweets → Metrics → Enable Web Analytics. The CSP already allows `static.cloudflareinsights.com`.
-- **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (address only in Cloudflare, never in the repo).
+- **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (the private address only in Cloudflare, never in the repo). **Only after a test message arrives**, set `email: "contact@chirasweets.md"` in `src/content/shop.ts` (and its test). Until then the site shows no e-mail (#9).
 
 ## 11. Launch checklist
 - [ ] **Chiriac David approved the About text and the homepage quote** (RO and RU, check them on the preview), then set `FOUNDER_TEXT_APPROVED = true` in `src/content/approvals.ts` — launch blocker (D-028)

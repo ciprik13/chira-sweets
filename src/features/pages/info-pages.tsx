@@ -11,6 +11,7 @@ import { EventForm } from "@/features/events/event-form";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
+import { phoneHref } from "@/lib/contact";
 import { bakeryJsonLd, faqJsonLd, jsonLdHtml } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
@@ -471,9 +472,15 @@ export function PrivacyPage({ locale }: { locale: Locale }) {
           ))}
           <p className="text-brown">
             {t.contactLabel}{" "}
-            <a href={`mailto:${shop.email}`} className="text-wine underline">
-              {shop.email}
-            </a>
+            {shop.email ? (
+              <a href={`mailto:${shop.email}`} className="text-wine underline">
+                {shop.email}
+              </a>
+            ) : (
+              <a href={phoneHref()} className="text-wine underline">
+                {shop.phone.display}
+              </a>
+            )}
           </p>
         </div>
       </section>
