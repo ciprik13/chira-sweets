@@ -21,7 +21,12 @@ export const shop = {
     instagram: "chira_sweets",
     tiktok: null as string | null,
   },
-  email: "contact@chirasweets.md",
+  /**
+   * Public e-mail. `null` until Cloudflare Email Routing delivers a test
+   * message (docs/deploy.md, step 10); then set "contact@chirasweets.md".
+   * While `null`, the site shows no e-mail anywhere.
+   */
+  email: null as string | null,
   /** Pickup address and hours (C-07), confirmed by the owner on 2026-11-26. */
   address: {
     ro: "str. Tudor Vladimirescu 69, Durlești",

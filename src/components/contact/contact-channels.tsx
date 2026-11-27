@@ -49,20 +49,22 @@ export function ContactChannels({ dict }: { dict: Dictionary }) {
           )}
         </li>
       ))}
-      <li>
-        <a
-          href={`mailto:${shop.email}`}
-          className="flex min-h-20 items-center gap-4 rounded-2xl border border-oak/40 bg-white p-5 transition hover:border-wine/50 hover:shadow-md"
-        >
-          <Mail className="size-6 shrink-0 text-wine" aria-hidden />
-          <span className="flex flex-col">
-            <span className="font-medium tracking-wide text-wine">
-              {dict.pages.contact.email}
+      {shop.email && (
+        <li>
+          <a
+            href={`mailto:${shop.email}`}
+            className="flex min-h-20 items-center gap-4 rounded-2xl border border-oak/40 bg-white p-5 transition hover:border-wine/50 hover:shadow-md"
+          >
+            <Mail className="size-6 shrink-0 text-wine" aria-hidden />
+            <span className="flex flex-col">
+              <span className="font-medium tracking-wide text-wine">
+                {dict.pages.contact.email}
+              </span>
+              <span className="text-sm text-brown">{shop.email}</span>
             </span>
-            <span className="text-sm text-brown">{shop.email}</span>
-          </span>
-        </a>
-      </li>
+          </a>
+        </li>
+      )}
     </ul>
   );
 }

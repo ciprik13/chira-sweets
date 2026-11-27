@@ -14,7 +14,7 @@ export function bakeryJsonLd(locale: Locale) {
     logo: absoluteUrl("/brand/logo-round-wine.svg"),
     image: absoluteUrl("/og-default.png"),
     telephone: shop.phone.e164,
-    email: shop.email,
+    ...(shop.email && { email: shop.email }),
     sameAs: [instagramHref()],
     areaServed: { "@type": "City", name: "Chișinău" },
     address: { "@type": "PostalAddress", ...shop.postalAddress },
