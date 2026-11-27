@@ -92,7 +92,7 @@ Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project, 
 - **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (the private address only in Cloudflare, never in the repo). **Only after a test message arrives**, set `email: "contact@chirasweets.md"` in `src/content/shop.ts` (and its test). Until then the site shows no e-mail (#9).
 
 ## 11. Launch checklist
-- [ ] **Chiriac David approved the About text and the homepage quote** (RO and RU, check them on the preview), then set `FOUNDER_TEXT_APPROVED = true` in `src/content/approvals.ts` — launch blocker (D-028)
+- [ ] **Chiriac David approved the About text and the homepage quote** (RO and RU, check them on the preview), then tick **"Textul lui Chiriac David … aprobat"** in the CMS (*Date cofetărie*) or set `founderTextApproved: true` in `content/settings/shop.json` — launch blocker (D-028)
 - [ ] **WAF rate-limit rule on `/api/request` active** (step 10) — launch blocker
 - [ ] `production` environment requires @ciprik13's approval (step 4)
 - [ ] https://chirasweets.md/ redirects to `/ro/`; `https://www.chirasweets.md/<any path>` returns **301** to `https://chirasweets.md/<same path>`; HTTPS only

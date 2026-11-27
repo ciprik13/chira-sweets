@@ -38,7 +38,9 @@
       "closes": "20:30"
     },
     {
-      "days": ["Sunday"],
+      "days": [
+        "Sunday"
+      ],
       "opens": "11:00",
       "closes": "20:30"
     }
@@ -46,5 +48,6 @@
   "legalEntity": {
     "name": "",
     "idno": ""
-  }
+  },
+  "founderTextApproved": false
 }

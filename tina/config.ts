@@ -178,7 +178,7 @@ const productFields: TinaField[] = [
 ];
 
 export default defineConfig({
-  // Saves are commits to `dev` (P-029): they show on the dev preview and go
+  // Saves are commits to `dev` (P-031): they show on the dev preview and go
   // live with the next release PR dev → main. Same for the admin served from
   // the production site, so edits never bypass the release.
   branch: process.env.TINA_BRANCH || "dev",
@@ -385,6 +385,14 @@ export default defineConfig({
               { type: "string", name: "opens", label: "Deschide (HH:MM)" },
               { type: "string", name: "closes", label: "Închide (HH:MM)" },
             ],
+          },
+          {
+            type: "boolean",
+            name: "founderTextApproved",
+            label:
+              "Textul lui Chiriac David (Despre noi + citatul) a fost aprobat de el",
+            description:
+              "Până nu e bifat, site-ul public afișează textul neutru; textul fondatorului apare doar pe site-ul de test.",
           },
           {
             type: "object",

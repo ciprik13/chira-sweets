@@ -52,6 +52,8 @@ export const shopSchema = z.object({
     z.object({ days: z.array(day).min(1), opens: time, closes: time }),
   ),
   legalEntity: z.object({ name: z.string().trim(), idno: z.string().trim() }),
+  /** D-028: the founder approved his About text and quote (ticked in the CMS). */
+  founderTextApproved: z.boolean().default(false),
 });
 
 export type ShopSettings = z.infer<typeof shopSchema>;
@@ -79,6 +81,7 @@ export function toShop(s: ShopSettings) {
     hours: both(s.hours),
     openingHours: s.openingHours,
     legalEntity: s.legalEntity.name ? s.legalEntity : null,
+    founderTextApproved: s.founderTextApproved,
   };
 }
 

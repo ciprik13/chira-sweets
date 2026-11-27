@@ -3,8 +3,8 @@ name: Deploy
 # Production: every push to main → chirasweets.md (D-008: prod deploys only from main),
 # after lint/tests pass and @ciprik13 approves the `production` environment.
 # CMS edits (TinaCMS) are committed to dev: they show on the dev preview right
-# away and reach production with the next release PR dev → main (P-029).
-# Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets.pages.dev,
+# away and reach production with the next release PR dev → main (P-031).
+# Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets-4fw.pages.dev,
 # built with draft sample products visible for review.
 on:
   push:
@@ -77,7 +77,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: "1"
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ vars.TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          # The admin always edits dev, whichever branch is being built (P-029).
+          # The admin always edits dev, whichever branch is being built (P-031).
           TINA_BRANCH: dev
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_SHOW_DRAFTS: ${{ github.ref == 'refs/heads/main' && '0' || '1' }}

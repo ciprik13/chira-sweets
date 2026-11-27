@@ -5,11 +5,11 @@ Everything visitors see is editable at **https://chirasweets.md/admin/**:
 | In the CMS | File in the repo | What it holds |
 |---|---|---|
 | **Catalog — produse, prețuri, poze** | `content/catalog/catalog.json` | Products (name, category, price, photos, size, description, allergens, bestseller, draft) and categories |
-| **Date cofetărie** | `content/settings/shop.json` | Phone, Telegram, Viber, WhatsApp, Instagram, TikTok, e-mail, address, opening hours, legal entity |
+| **Date cofetărie** | `content/settings/shop.json` | Phone, Telegram, Viber, WhatsApp, Instagram, TikTok, e-mail, address, opening hours, legal entity, founder-text approval (D-028) |
 | **Texte site (RO / RU)** | `content/copy/ro.json`, `content/copy/ru.json` | Every text on every page, in both languages |
 | Photos | `public/uploads/` | Uploaded through the CMS |
 
-How it works: a save in the CMS is a Git commit to **`dev`** made by Tina Cloud (P-029). It shows on the preview **https://dev.chira-sweets.pages.dev** within a few minutes and reaches **chirasweets.md with the next release** (PR `dev` → `main`, approved by @ciprik13). Every build **validates all content** (Zod schemas in `src/content/*.ts`, RO/RU parity tests) before building. An invalid edit (a fixed price without an amount, a HEIC photo, a missing Russian name…) fails the build and the live site stays as it was; the error is shown in the GitHub Actions run.
+How it works: a save in the CMS is a Git commit to **`dev`** made by Tina Cloud (P-031). It shows on the preview **https://dev.chira-sweets-4fw.pages.dev** within a few minutes and reaches **chirasweets.md with the next release** (PR `dev` → `main`, approved by @ciprik13). Every build **validates all content** (Zod schemas in `src/content/*.ts`, RO/RU parity tests) before building. An invalid edit (a fixed price without an amount, a HEIC photo, a missing Russian name…) fails the build and the live site stays as it was; the error is shown in the GitHub Actions run.
 
 Photos: the build strips EXIF/GPS from every uploaded photo, limits originals to 2400 px and creates WEBP versions at 480 / 960 / 1600 px (`scripts/postbuild.mjs`, `src/lib/images.ts`). Phones download the small version.
 
@@ -29,7 +29,7 @@ Photos: the build strips EXIF/GPS from every uploaded photo, limits originals to
    | Secret | `TINA_TOKEN` | read-only token |
    From then on the Deploy workflow builds `/admin` (`npm run build:cms`). Without them the site builds as before, without the admin.
 5. **Editors** — Tina Cloud → project → **Collaborators** → invite the shop owner by e-mail (no GitHub account needed). Free plan: 2 users.
-6. **Where saves go: `dev`** (P-029, publish with each release).
+6. **Where saves go: `dev`** (P-031, publish with each release).
    - Tina Cloud project → *Configuration* → branch **`dev`** (the config also pins `dev`: `tina/config.ts`, `TINA_BRANCH` in the Deploy workflow).
    - GitHub → Settings → Rules → `protect-dev` → **Bypass list** → add the **Tina Cloud** GitHub app only, so its commits can land on `dev` (people still need PRs).
    - Each save on `dev` runs CI and redeploys the dev preview. Production changes only through the release PR `dev` → `main`, which still needs @ciprik13's approval on the `production` environment.
@@ -62,7 +62,7 @@ Run `npx tinacms build --local --skip-cloud-checks` to check the admin builds; c
 **Schimbă un preț**
 1. *Catalog — produse, prețuri, poze* → *Produse* → alege produsul.
 2. *Preț* → *Tip preț*: „Preț fix”, „De la” sau „La cerere” → *Sumă (lei)* → *Unitate*.
-3. Apasă **Save**. Modificarea apare în câteva minute pe **https://dev.chira-sweets.pages.dev** (site-ul de test) și ajunge pe **chirasweets.md** la următoarea publicare făcută de dezvoltator.
+3. Apasă **Save**. Modificarea apare în câteva minute pe **https://dev.chira-sweets-4fw.pages.dev** (site-ul de test) și ajunge pe **chirasweets.md** la următoarea publicare făcută de dezvoltator.
 
 **Adaugă poze**
 1. Deschide produsul → *Fotografii* → **+** → trage poza sau apasă pentru a o alege.
@@ -74,6 +74,8 @@ Run `npx tinacms build --local --skip-cloud-checks` to check the admin builds; c
 **Alergeni:** bifează alergenii din *Conține* și apoi **Alergeni confirmați de cofetărie**. Fără această bifă, site-ul afișează „Întreabă-ne despre alergeni”.
 
 **Program, telefon, adresă:** *Date cofetărie*.
+
+**Textul fondatorului (Despre noi + citatul):** după ce Chiriac David l-a citit și aprobat pe site-ul de test, bifează în *Date cofetărie* „Textul lui Chiriac David … a fost aprobat de el”.
 
 **Orice text de pe site:** *Texte site (RO / RU)* → fișierul `ro` sau `ru`.
 
