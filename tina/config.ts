@@ -178,10 +178,11 @@ const productFields: TinaField[] = [
 ];
 
 export default defineConfig({
-  // Saves are commits to `dev` (P-031): they show on the dev preview and go
-  // live with the next release PR dev → main. Same for the admin served from
-  // the production site, so edits never bypass the release.
-  branch: process.env.TINA_BRANCH || "dev",
+  // Saves are commits to the unprotected `content` branch (P-031). A workflow
+  // opens/updates the PR content → dev, CI validates it and a maintainer
+  // approves; the content branch has its own preview. Same branch for the
+  // admin served from production, so edits never skip review.
+  branch: process.env.TINA_BRANCH || "content",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? null,
   token: process.env.TINA_TOKEN ?? null,
 
@@ -322,8 +323,9 @@ export default defineConfig({
           {
             type: "string",
             name: "email",
-            label: "E-mail public",
-            required: true,
+            label: "E-mail public (opțional)",
+            description:
+              "Lasă gol până când adresa primește efectiv e-mailuri (Cloudflare Email Routing). Gol = nu apare pe site.",
           },
           text("address", "Adresă (afișată)"),
           {

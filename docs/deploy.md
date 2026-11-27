@@ -84,12 +84,12 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 6. SSL/TLS → mode **Full (strict)**; Edge Certificates → **Always Use HTTPS** on.
 
 ## 9b. CMS (TinaCMS)
-Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project, `TINA_CLIENT_ID` variable, `TINA_TOKEN` secret, Tina app on the `protect-dev` bypass list). CMS saves go to `dev` and reach production with each release.
+Optional until the owner starts editing: see `docs/cms.md` (Tina Cloud project under the business account, `TINA_CLIENT_ID`, `TINA_TOKEN`, `CONTENT_PR_TOKEN`). CMS saves go to the `content` branch → reviewed PR into `dev` → production with the next release (P-031). Planned for v0.2.0 (P-030).
 
 ## 10. Protection & analytics
 - **Rate limit the form — REQUIRED before launch**: Security → WAF → Rate limiting rules → *If URI Path equals `/api/request`* → 5 requests / 10 s per IP → Block for 10 s (free plan allows one rule). Turnstile alone does not stop a flood of requests reaching the function and Telegram.
 - **Web Analytics** (cookieless): Pages → chira-sweets → Metrics → Enable Web Analytics. The CSP already allows `static.cloudflareinsights.com`.
-- **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (the private address only in Cloudflare, never in the repo). **Only after a test message arrives**, set `email: "contact@chirasweets.md"` in `src/content/shop.ts` (and its test). Until then the site shows no e-mail (#9).
+- **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (the private address only in Cloudflare, never in the repo). **Only after a test message arrives**, fill in *E-mail public* in the CMS (*Date cofetărie*) or `email` in `content/settings/shop.json`. Until then it stays empty and the site shows no e-mail.
 
 ## 11. Launch checklist
 - [ ] **Chiriac David approved the About text and the homepage quote** (RO and RU, check them on the preview), then tick **"Textul lui Chiriac David … aprobat"** in the CMS (*Date cofetărie*) or set `founderTextApproved: true` in `content/settings/shop.json` — launch blocker (D-028)

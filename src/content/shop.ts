@@ -39,7 +39,8 @@ export const shopSchema = z.object({
   whatsapp: phone,
   instagram: handle.min(1),
   tiktok: handle,
-  email: z.email(),
+  /** Public e-mail; empty until Cloudflare Email Routing works (docs/deploy.md). */
+  email: z.union([z.email(), z.literal("")]),
   address: localizedText,
   postalAddress: z.object({
     streetAddress: z.string().trim(),
@@ -74,7 +75,8 @@ export function toShop(s: ShopSettings) {
       instagram: s.instagram.replace(/^@/, ""),
       tiktok: s.tiktok.replace(/^@/, "") || null,
     },
-    email: s.email,
+    /** `null` until the address really receives mail. */
+    email: s.email || null,
     /** `null` renders an "în curând / скоро" placeholder. */
     address: both(s.address),
     postalAddress: s.postalAddress,

@@ -1,0 +1,81 @@
+name: Content PR
+
+# P-031: TinaCMS commits to the unprotected `content` branch. This workflow
+# checks that only content changed and opens (or updates) the PR content → dev,
+# where CI validates it and a maintainer approves it.
+#
+# The PR is created with the CONTENT_PR_TOKEN secret (fine-grained token or
+# GitHub App token, "Pull requests: write" on this repo only), because a PR
+# opened with GITHUB_TOKEN does not trigger the CI checks that `dev` requires.
+# Without the secret the workflow falls back to GITHUB_TOKEN and says how to
+# start the checks (docs/cms.md).
+on:
+  push:
+    branches: [content]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: content-pr
+  cancel-in-progress: false
+
+jobs:
+  content-pr:
+    name: Open or update the content → dev PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Only content may change on the content branch
+        id: diff
+        run: |
+          git fetch --quiet origin dev
+          changed=$(git diff --name-only origin/dev...HEAD)
+          if [ -z "$changed" ]; then
+            echo "Nothing to propose: content is already in dev."
+            echo "empty=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "empty=false" >> "$GITHUB_OUTPUT"
+          outside=$(echo "$changed" | grep -Ev '^(content/|public/uploads/)' || true)
+          if [ -n "$outside" ]; then
+            echo "::error::The content branch changes files outside content/ and public/uploads/:"
+            echo "$outside"
+            exit 1
+          fi
+          {
+            echo "files<<EOF"
+            echo "$changed" | sed 's/^/- `/; s/$/`/'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open or update the PR
+        if: steps.diff.outputs.empty == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.CONTENT_PR_TOKEN || github.token }}
+          USING_FALLBACK: ${{ secrets.CONTENT_PR_TOKEN == '' }}
+          FILES: ${{ steps.diff.outputs.files }}
+        run: |
+          set -euo pipefail
+          body=$(printf '%s\n\n%s\n\n%s\n%s\n\n%s\n' \
+            "Content edited in the CMS (TinaCMS → \`content\` branch, P-031)." \
+            "Preview: https://content.chira-sweets-4fw.pages.dev/ro/" \
+            "Changed files:" "$FILES" \
+            "Squash-merge after review. CI validates all content (schemas, RO/RU parity) before this can merge.")
+          number=$(gh pr list --repo "$GITHUB_REPOSITORY" --head content --base dev --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --repo "$GITHUB_REPOSITORY" --body "$body"
+            echo "Updated PR #$number"
+          else
+            gh pr create --repo "$GITHUB_REPOSITORY" --head content --base dev \
+              --title "chore(content): update site content from the CMS" --body "$body"
+          fi
+          if [ "$USING_FALLBACK" = "true" ]; then
+            echo "::warning::CONTENT_PR_TOKEN is not set: the PR was opened with GITHUB_TOKEN, so its CI checks do not start automatically. Close and reopen the PR (or set the secret, docs/cms.md)."
+          fi
