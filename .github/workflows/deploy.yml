@@ -2,11 +2,15 @@ name: Deploy
 
 # Production: every push to main → chirasweets.md (D-008: prod deploys only from main),
 # after lint/tests pass and @ciprik13 approves the `production` environment.
-# Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets.pages.dev,
+# CMS edits (TinaCMS) are committed to the `content` branch: its preview
+# (content.chira-sweets-4fw.pages.dev) updates right away, and the edits reach
+# dev through a reviewed PR (content-pr.yml) and production with the next
+# release (P-031).
+# Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets-4fw.pages.dev,
 # built with draft sample products visible for review.
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, content]
   pull_request:
     branches: [dev, main]
 
@@ -63,10 +67,20 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build (with the CMS admin when Tina Cloud is configured)
+        run: |
+          if [ -n "$NEXT_PUBLIC_TINA_CLIENT_ID" ] && [ -n "$TINA_TOKEN" ]; then
+            npm run build:cms
+          else
+            echo "::notice::Tina Cloud not configured; building the site without /admin"
+            npm run build
+          fi
         env:
           NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ vars.TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          # The admin always edits the content branch, whichever branch is built (P-031).
+          TINA_BRANCH: content
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_SHOW_DRAFTS: ${{ github.ref == 'refs/heads/main' && '0' || '1' }}
 

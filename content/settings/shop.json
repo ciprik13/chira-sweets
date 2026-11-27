@@ -1,0 +1,53 @@
+{
+  "name": "Chira Sweets",
+  "phone": {
+    "e164": "+37379349097",
+    "display": "079 349 097"
+  },
+  "telegram": "+37379349097",
+  "viber": "+37379349097",
+  "whatsapp": "+37379349097",
+  "instagram": "chira_sweets",
+  "tiktok": "",
+  "email": "",
+  "address": {
+    "ro": "str. Tudor Vladimirescu 69, Durlești",
+    "ru": "ул. Тудор Владимиреску, 69, Дурлешты"
+  },
+  "postalAddress": {
+    "streetAddress": "str. Tudor Vladimirescu 69",
+    "addressLocality": "Durlești",
+    "addressRegion": "Chișinău",
+    "addressCountry": "MD"
+  },
+  "hours": {
+    "ro": "Luni–Sâmbătă: 6:30–20:30\nDuminică: 11:00–20:30",
+    "ru": "Пн–Сб: 6:30–20:30\nВс: 11:00–20:30"
+  },
+  "openingHours": [
+    {
+      "days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "06:30",
+      "closes": "20:30"
+    },
+    {
+      "days": [
+        "Sunday"
+      ],
+      "opens": "11:00",
+      "closes": "20:30"
+    }
+  ],
+  "legalEntity": {
+    "name": "",
+    "idno": ""
+  },
+  "founderTextApproved": false
+}

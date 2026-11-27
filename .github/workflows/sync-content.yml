@@ -1,0 +1,46 @@
+name: Sync content branch
+
+# P-031: after anything lands on dev (including a squash-merged content PR),
+# merge dev into the `content` branch so the CMS always edits on top of the
+# current code and schema, and the next content PR shows only new edits.
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-content
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Merge dev into content
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Merge
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git ls-remote --exit-code --heads origin content >/dev/null; then
+            echo "Creating the content branch from dev."
+            git push origin "HEAD:refs/heads/content"
+            exit 0
+          fi
+          git fetch --quiet origin content
+          git checkout -B content origin/content
+          if git merge --no-edit origin/dev; then
+            git push origin content
+          else
+            git merge --abort
+            echo "::error::dev and content conflict (the same content was edited in both). Merge dev into content by hand (docs/cms.md, 'Conflicts')."
+            exit 1
+          fi

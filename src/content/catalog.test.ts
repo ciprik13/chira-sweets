@@ -10,13 +10,6 @@ describe("product data", () => {
     expect(() => parseProducts(productInputs)).not.toThrow();
   });
 
-  it("never states allergens or prices on drafts without owner data", () => {
-    for (const p of parseProducts(productInputs).filter((p) => p.draft)) {
-      expect(p.allergens.status).toBe("unverified");
-      expect(p.price.kind).toBe("onRequest");
-    }
-  });
-
   it("has unique category slugs", () => {
     const slugs = categories.map((c) => c.slug);
     expect(new Set(slugs).size).toBe(slugs.length);

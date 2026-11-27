@@ -37,5 +37,14 @@ All decisions by @ciprik13 unless noted.
 |---|---|---|
 | P-025 | "Lista mea": several products sent as one messenger message. | Postponed to after launch (@ciprik13, 2026-11-26). Code kept on branch `feat/order-list`. |
 
+## Proposed — pending @ciprik13 (PR #7)
+Numbered after D-029 to avoid clashing IDs.
+
+| ID | Proposal | Why | Cost / risk |
+|---|---|---|---|
+| P-030 | **Accepted for after launch (v0.2.0, not v0.1.0)** by @ciprik13 on 2026-11-27. Content editing through **TinaCMS (Tina Cloud, free plan)**: all content moves to JSON in `content/` (catalog, shop settings, RO/RU copy), photos to `public/uploads`; admin at `/admin`. Replaces "content edited via PR" in D-018. | Owner must update prices and photos without a developer; Tina Cloud logs in by e-mail (no GitHub account), stores content in the repo (no lock-in, history in Git). | Free plan: 2 editors, no editorial (draft/PR) workflow — that is ~$49/month. Adds an admin surface (own CSP, Tina Cloud auth). |
+| P-031 | CMS saves go to an **unprotected `content` branch** (only `content/` and `public/uploads/` may change; `content-pr.yml` enforces it) with its own preview. A workflow opens/updates the PR `content` → `dev` using a bot token, CI validates it, one maintainer approves and squash-merges; `sync-content.yml` merges `dev` back into `content`. Content reaches production with the next release. Replaces the earlier proposal (Tina app on the `protect-dev` bypass list), **rejected by @ciprik13 on 2026-11-27** because it gave a third-party app unreviewed write access to `dev`. | Every content change is reviewed and CI-validated; no third-party bypass of rulesets; the owner still sees changes immediately on the content preview. | Each price change needs a maintainer approval plus a release; a bot token (`CONTENT_PR_TOKEN`) must be maintained. |
+
+
 ## Open items
 See `docs/open-questions.md`.

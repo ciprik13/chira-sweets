@@ -9,3 +9,9 @@ README.md
 CONTRIBUTING.md
 SECURITY.md
 .github
+
+# Written by TinaCMS on every save; validated by schemas/tests instead
+content/
+tina/tina-lock.json
+tina/__generated__/
+public/admin/

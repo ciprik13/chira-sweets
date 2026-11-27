@@ -107,6 +107,7 @@ export function ProductPage({
               noPhotoLabel={t.noPhoto}
               priority
               className="aspect-[4/3] sm:aspect-square"
+              sizes="(min-width: 768px) 50vw, 100vw"
             />
             {product.draft && (
               <span className="absolute top-4 left-4 rounded-full bg-ivory/95 px-3 py-1 text-xs font-medium tracking-wider text-wine uppercase">
