@@ -1,0 +1,14 @@
+# Cloudflare Pages project (D-019). Secrets are NEVER put here — set them in the
+# Cloudflare dashboard (Pages → chira-sweets → Settings → Variables and Secrets).
+# See docs/deploy.md.
+name = "chira-sweets"
+pages_build_output_dir = "out"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://chirasweets.md,https://www.chirasweets.md"
+
+[env.preview.vars]
+# Preview deployments live on *.chira-sweets.pages.dev; the function also
+# accepts the request's own origin when this list is empty.
+ALLOWED_ORIGINS = ""

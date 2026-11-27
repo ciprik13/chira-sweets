@@ -1,0 +1,108 @@
+name: Deploy
+
+# Production: every push to main → chirasweets.md (D-008: prod deploys only from main),
+# after lint/tests pass and @ciprik13 approves the `production` environment.
+# Preview: pushes to dev and PRs into dev/main → <branch>.chira-sweets.pages.dev,
+# built with draft sample products visible for review.
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [dev, main]
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write
+
+concurrency:
+  group: deploy-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify (lint, format, typecheck, test)
+    # Secrets are not available to PRs from forks.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm audit --omit=dev --audit-level=high
+
+  deploy:
+    name: Build and deploy to Cloudflare Pages
+    # Never deploys unless verification passed. Production additionally waits
+    # for the required reviewer on the `production` environment (docs/deploy.md).
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+          NEXT_PUBLIC_SHOW_DRAFTS: ${{ github.ref == 'refs/heads/main' && '0' || '1' }}
+
+      - name: Check required config
+        if: github.ref == 'refs/heads/main'
+        env:
+          SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+        run: |
+          if [ -z "$SITE_KEY" ]; then
+            echo "::error::Repository variable TURNSTILE_SITE_KEY is not set (see docs/deploy.md)"
+            exit 1
+          fi
+
+      - name: Deploy
+        id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          # Without pipefail, `| tee` would hide a failed wrangler deploy.
+          set -o pipefail
+          npx wrangler pages deploy out \
+            --project-name=chira-sweets \
+            --branch="$BRANCH" \
+            --commit-hash="$GITHUB_SHA" \
+            --commit-dirty=true | tee deploy.log
+          url=$(grep -Eo 'https://[a-zA-Z0-9.-]+\.pages\.dev' deploy.log | tail -1)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on the PR
+        if: github.event_name == 'pull_request' && steps.deploy.outputs.url != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          URL: ${{ steps.deploy.outputs.url }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" \
+            --edit-last --create-if-none --body "Preview: $URL/ro/"
