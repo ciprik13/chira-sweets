@@ -44,7 +44,11 @@ export function CatalogPage({ locale }: { locale: Locale }) {
         products={getProducts()}
         categories={categories}
         locale={locale}
-        dict={dict}
+        dict={{
+          search: dict.search,
+          catalog: dict.catalog,
+          allergenNames: dict.allergenNames,
+        }}
       >
         <section className="fluted py-12 sm:py-16">
           <ul className="mx-auto grid max-w-7xl gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">

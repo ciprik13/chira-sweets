@@ -6,6 +6,7 @@ import { Logo } from "@/components/brand/logo";
 import { OrderSheet } from "@/components/contact/order-sheet";
 import { buttonVariants } from "@/components/ui/button";
 import { categories, getBestsellers } from "@/content/catalog";
+import { showFounderText } from "@/content/approvals";
 import { shop } from "@/content/shop";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -24,6 +25,8 @@ export function HomePage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const t = dict.home;
   const bestsellers = getBestsellers().slice(0, 4);
+  // Founder's quote only once he has approved it (src/content/approvals.ts).
+  const founder = showFounderText() ? dict.pages.about.founder : null;
 
   return (
     <>
@@ -291,14 +294,20 @@ export function HomePage({ locale }: { locale: Locale }) {
             className="mt-8"
           />
           <p className="mt-6 leading-relaxed text-brown">{t.about.body}</p>
-          <figure className="mt-8">
-            <blockquote className="font-serif text-2xl text-wine">
-              “{dict.pages.about.quote}”
-            </blockquote>
-            <figcaption className="eyebrow mt-3 text-gold-ink">
-              {dict.pages.about.founder.name} · {dict.pages.about.founder.role}
-            </figcaption>
-          </figure>
+          {founder ? (
+            <figure className="mt-8">
+              <blockquote className="font-serif text-2xl text-wine">
+                “{founder.quote}”
+              </blockquote>
+              <figcaption className="eyebrow mt-3 text-gold-ink">
+                {founder.name} · {founder.role}
+              </figcaption>
+            </figure>
+          ) : (
+            <p className="mt-6 font-serif text-xl text-gold-ink">
+              {dict.footer.tagline}
+            </p>
+          )}
           <Link
             href={href(locale, "about")}
             className={cn(buttonVariants({ variant: "link" }), "mt-6")}

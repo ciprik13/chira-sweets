@@ -3,7 +3,6 @@ import type { Product } from "@/content/schema";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
-import { AddToListButton } from "@/features/order-list/add-to-list";
 import { formatPrice } from "@/lib/format";
 import { ProductVisual } from "./product-visual";
 
@@ -14,7 +13,7 @@ export function ProductCard({
 }: {
   product: Product;
   locale: Locale;
-  dict: Dictionary;
+  dict: Pick<Dictionary, "catalog">;
 }) {
   const t = dict.catalog;
   return (
@@ -45,12 +44,6 @@ export function ProductCard({
         <p className="mt-auto pt-2 font-serif text-lg text-gold-ink">
           {formatPrice(product.price, locale, t)}
         </p>
-        <AddToListButton
-          category={product.category}
-          slug={product.slug}
-          labels={dict.orderList}
-          className="mt-2 h-auto min-h-10 w-full px-2 py-2 text-[0.65rem] leading-tight tracking-[0.06em] whitespace-normal sm:text-[0.7rem] sm:tracking-[0.1em]"
-        />
       </div>
     </article>
   );
@@ -63,7 +56,7 @@ export function ProductGrid({
 }: {
   products: Product[];
   locale: Locale;
-  dict: Dictionary;
+  dict: Pick<Dictionary, "catalog">;
 }) {
   return (
     <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">

@@ -25,17 +25,17 @@ All decisions by @ciprik13 unless noted.
 | D-020 | 2026-11-24 | Event requests are delivered to the owner via a Telegram bot. contact@chirasweets.md forwards to the owner's mailbox via Cloudflare Email Routing. Private addresses and tokens are never committed. | Instant notification, no monthly cost. |
 | D-021 | 2026-11-24 | Target launch: 2026-12-01. One visual direction instead of three. | Business deadline (QR on shop banner already points to the domain). |
 | D-022 | 2026-11-24 | Analytics: Cloudflare Web Analytics (cookieless, no consent banner). | Privacy-friendly, free. |
+| D-023 | 2026-11-26 | Instagram is an order channel (DM link `ig.me/m/chira_sweets`) next to phone, Telegram, Viber, WhatsApp. | Customers already order via Instagram (D-010). Was P-023. |
+| D-024 | 2026-11-26 | Catalog search and filters: text, category, "free from" (owner-verified allergens only), price. Client-side, state in the URL. | Faster browsing once the full catalog is in (G2). Was P-024. |
+| D-026 | 2026-11-26 | Custom-cake request form with optional reference photo → Telegram. Photo type checked by magic bytes, re-encoded in the browser, EXIF/GPS stripped on the server, not stored. | Persona Igor; structured custom-cake requests. Was P-026. |
+| D-027 | 2026-11-26 | Accent serif: Gilda Display (Latin) with **Forum** as the Cyrillic fallback, then Jost for everything else. | Matches the design canvas; RU text no longer falls back to a system serif (Georgia is missing on Android). Was P-027. |
+| D-028 | 2026-11-26 | Text in a real person's voice (About page, homepage quote by Chiriac David) is hidden in production until that person approves it (`src/content/approvals.ts`); previews show it for review. | Publishing words attributed to someone needs their consent. |
+| D-029 | 2026-11-26 | Canonical domain `https://chirasweets.md`; `www.chirasweets.md` (on the shop banner QR) 301-redirects to it. Cloudflare Pages project: `chira-sweets` → `chira-sweets-4fw.pages.dev`. | One canonical URL for SEO; the QR keeps working. |
 
-## Proposed — pending @ciprik13 (PR #5)
-Built and tested in PR #5, outside the MVP scope in PRD §3/§6. Each needs an explicit keep or drop; dropped items are removed from the PR before merge.
-
-| ID | Proposal | Why | Cost / risk |
-|---|---|---|---|
-| P-023 | Instagram as an order channel (DM link `ig.me/m/chira_sweets`) next to phone, Telegram, Viber, WhatsApp. | Customers already order via Instagram (D-010). | None; one link. |
-| P-024 | Catalog search and filters (text, category, "free from" on owner-verified allergens only, price). Client-side, state in the URL. | Faster for G2 once the full catalog is in. | Small JS bundle; no server. |
-| P-025 | "Lista mea": several products sent as one messenger message (WhatsApp pre-filled; copied for Telegram / Viber / Instagram). Browser storage only, no checkout. | One message instead of many for multi-item orders; keeps D-009 (no cart/payment). | Can be mistaken for a cart; copy says it is not a payment. |
-| P-026 | Custom-cake request form with optional reference photo → Telegram. Photo type checked by magic bytes, re-encoded in the browser, EXIF/GPS stripped on the server, not stored. | Supports persona Igor (custom cake); structured requests. | Personal photo passes through the function; privacy page updated. |
-| P-027 | Accent serif: Gilda Display (+ Jost). Gilda has no Cyrillic or italic: RU accent lines fall back to Georgia. | Matches the design canvas. | Mixed serif on RU pages unless a Cyrillic-capable alternative is chosen. |
+## Postponed
+| ID | Item | Status |
+|---|---|---|
+| P-025 | "Lista mea": several products sent as one messenger message. | Postponed to after launch (@ciprik13, 2026-11-26). Code kept on branch `feat/order-list`. |
 
 ## Open items
 See `docs/open-questions.md`.

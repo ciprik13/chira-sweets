@@ -185,28 +185,6 @@ export const ro = {
     privacy: "Politica de confidențialitate",
     rights: "Toate drepturile rezervate.",
   },
-  orderList: {
-    title: "Lista mea",
-    open: "Deschide lista mea",
-    add: "Adaugă în listă",
-    added: "În listă",
-    empty:
-      "Lista e goală. Adaugă deserturi din catalog și trimite-ne-o într-un singur mesaj.",
-    browse: "Vezi catalogul",
-    quantity: "Cantitate",
-    increase: "Mărește cantitatea",
-    decrease: "Micșorează cantitatea",
-    remove: "Șterge",
-    clear: "Golește lista",
-    sendTitle: "Trimite lista",
-    sendHint:
-      "Pe WhatsApp mesajul se completează singur. Pentru Telegram, Viber și Instagram îl copiem — doar lipește-l în chat.",
-    copied: "Mesaj copiat — lipește-l în chat",
-    copyFailed: "Nu am putut copia automat. Selectează textul de mai jos:",
-    note: "Nu este o plată. Îți confirmăm disponibilitatea, prețul și termenul în chat.",
-    greeting: "Bună! Aș dori să comand:",
-    footer: "Mulțumesc!",
-  },
   search: {
     label: "Caută în catalog",
     placeholder: "Caută: macarons, tort, cheesecake…",

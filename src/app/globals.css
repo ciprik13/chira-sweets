@@ -22,7 +22,10 @@
   --color-brown: #5a2a1e;
 
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-gilda), Georgia, "Times New Roman", serif;
+  /* Font names, not var(--font-gilda): that variable carries next/font's
+     metric fallback ("Gilda Display Fallback" = local Times New Roman), which
+     has Cyrillic and would catch Russian glyphs before Forum (D-027). */
+  --font-serif: "Gilda Display", "Forum", Georgia, "Times New Roman", serif;
 
   --tracking-brand: 0.28em;
 }

@@ -103,7 +103,12 @@ export function CategoryPage({
             <p className="mt-3 mb-8 text-brown">{dict.pages.cakeForm.lead}</p>
             <CakeForm
               locale={locale}
-              dict={dict}
+              dict={{
+                pages: {
+                  cakeForm: dict.pages.cakeForm,
+                  form: dict.pages.form,
+                },
+              }}
               privacyHref={href(locale, "privacy")}
             />
           </div>

@@ -5,6 +5,7 @@ import { ContactChannels } from "@/components/contact/contact-channels";
 import { OrderSheet } from "@/components/contact/order-sheet";
 import { PageHeader } from "@/components/layout/page-header";
 import { buttonVariants } from "@/components/ui/button";
+import { showFounderText } from "@/content/approvals";
 import { shop } from "@/content/shop";
 import { EventForm } from "@/features/events/event-form";
 import type { Locale } from "@/i18n/config";
@@ -218,45 +219,61 @@ export function DeliveryPage({ locale }: { locale: Locale }) {
 export function AboutPage({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const t = dict.pages.about;
+  // Founder's own words only once he has approved them (src/content/approvals.ts).
+  const founder = showFounderText() ? t.founder : null;
   return (
     <>
       <PageHeader
         eyebrow={t.eyebrow}
         title={t.title}
-        lead={t.lead}
+        lead={founder?.lead ?? t.lead}
         crumbs={crumbs(locale, dict.nav.about)}
         crumbsLabel={dict.catalog.breadcrumb}
       />
       <section className="bg-ivory py-14 sm:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
           <article className="grid gap-5 text-lg leading-relaxed text-brown">
-            {t.story.map((p) => (
+            {(founder?.story ?? t.story).map((p) => (
               <p key={p}>{p}</p>
             ))}
-            <footer className="mt-2 flex items-center gap-4">
-              <span aria-hidden className="foil-rule w-12" />
-              <span>
-                <span className="block font-serif text-2xl text-wine">
-                  {t.founder.name}
+            {founder && (
+              <footer className="mt-2 flex items-center gap-4">
+                <span aria-hidden className="foil-rule w-12" />
+                <span>
+                  <span className="block font-serif text-2xl text-wine">
+                    {founder.name}
+                  </span>
+                  <span className="eyebrow text-gold-ink">{founder.role}</span>
                 </span>
-                <span className="eyebrow text-gold-ink">{t.founder.role}</span>
-              </span>
-            </footer>
+              </footer>
+            )}
           </article>
           <figure className="relative flex aspect-[4/5] flex-col items-center justify-center gap-8 overflow-hidden rounded-3xl bg-wine p-10 text-center text-cream">
             <div aria-hidden className="glow absolute inset-0" />
-            <Logo variant="round-goldfoil" className="relative w-24" alt="" />
-            <blockquote className="relative font-serif text-2xl leading-snug text-cream sm:text-3xl">
-              “{t.quote}”
-            </blockquote>
-            <figcaption className="relative">
-              <span className="block text-sm tracking-[0.2em] text-gold-bright uppercase">
-                {t.founder.name}
-              </span>
-              <span className="mt-1 block text-xs text-cream/70">
-                {t.founder.role}
-              </span>
-            </figcaption>
+            <Logo
+              variant="round-goldfoil"
+              className={cn("relative", founder ? "w-24" : "w-1/2")}
+              alt=""
+            />
+            {founder ? (
+              <>
+                <blockquote className="relative font-serif text-2xl leading-snug text-cream sm:text-3xl">
+                  “{founder.quote}”
+                </blockquote>
+                <figcaption className="relative">
+                  <span className="block text-sm tracking-[0.2em] text-gold-bright uppercase">
+                    {founder.name}
+                  </span>
+                  <span className="mt-1 block text-xs text-cream/70">
+                    {founder.role}
+                  </span>
+                </figcaption>
+              </>
+            ) : (
+              <figcaption className="eyebrow relative text-gold-bright">
+                {dict.footer.tagline}
+              </figcaption>
+            )}
           </figure>
         </div>
       </section>

@@ -28,7 +28,7 @@ export function CakeForm({
   privacyHref,
 }: {
   locale: Locale;
-  dict: Dictionary;
+  dict: { pages: Pick<Dictionary["pages"], "cakeForm" | "form"> };
   privacyHref: string;
 }) {
   const t = dict.pages.cakeForm;

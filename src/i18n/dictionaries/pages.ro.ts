@@ -139,21 +139,27 @@ export const pagesRo = {
   about: {
     metaTitle: "Despre noi",
     metaDescription:
-      "Chira Sweets — cofetăria lui Chiriac David, patiser și fondator. Deserturi făcute cu grijă, în Durlești, Chișinău.",
+      "Chira Sweets — cofetărie artizanală în Durlești, Chișinău. Calitate, prospețime și atenție la detalii în fiecare desert.",
     eyebrow: "Despre noi",
     title: "Chira Sweets",
-    lead: "În cuvintele patiserului și fondatorului Chira Sweets.",
-    // DRAFT in the founder's voice — to be read and approved by Chiriac David (D-017).
+    // Neutral text: shown in production until the founder's text is approved.
+    lead: "O cofetărie din Chișinău unde deserturile se fac cu răbdare și atenție la fiecare detaliu.",
     story: [
-      "Mă numesc Chiriac David și sunt patiserul din spatele Chira Sweets. Am deschis cofetăria ca să fac deserturi pe care le-aș pune cu drag pe masa celor dragi: frumoase, dar mai ales gustoase.",
-      "Lucrez în loturi mici și aleg ingredientele cu grijă, pentru că un desert bun începe cu ingrediente bune. Fiecare macaron, tort sau croissant e pregătit cu aceeași atenție la detalii.",
-      "Pentru mine, un desert reușit e cel care face un moment obișnuit puțin mai special. Te aștept în cofetărie, la o cafea și ceva dulce.",
+      "Chira Sweets a pornit din dragostea pentru deserturile frumoase și gustoase. Fiecare macaron, tort sau croissant este pregătit în atelierul nostru, din ingrediente atent alese.",
+      "Credem că un desert bun începe cu ingrediente de calitate și se termină cu un zâmbet. De aceea lucrăm în loturi mici, cu grijă pentru gust, aspect și prospețime.",
     ],
-    quote:
-      "Un desert bun începe cu ingrediente bune și se termină cu un zâmbet.",
+    // Founder's voice: DRAFT until Chiriac David approves it (src/content/approvals.ts).
     founder: {
       name: "Chiriac David",
       role: "Patiser și fondator Chira Sweets",
+      lead: "În cuvintele patiserului și fondatorului Chira Sweets.",
+      story: [
+        "Mă numesc Chiriac David și sunt patiserul din spatele Chira Sweets. Am deschis cofetăria ca să fac deserturi pe care le-aș pune cu drag pe masa celor dragi: frumoase, dar mai ales gustoase.",
+        "Lucrez în loturi mici și aleg ingredientele cu grijă, pentru că un desert bun începe cu ingrediente bune. Fiecare macaron, tort sau croissant e pregătit cu aceeași atenție la detalii.",
+        "Pentru mine, un desert reușit e cel care face un moment obișnuit puțin mai special. Te aștept în cofetărie, la o cafea și ceva dulce.",
+      ],
+      quote:
+        "Un desert bun începe cu ingrediente bune și se termină cu un zâmbet.",
     },
     valuesTitle: "Ce ne definește",
     values: [

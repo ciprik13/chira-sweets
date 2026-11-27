@@ -14,7 +14,6 @@ import type { Product } from "@/content/schema";
 import { localeTags, locales, type Locale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/dictionaries";
 import { href } from "@/i18n/routes";
-import { AddToListButton } from "@/features/order-list/add-to-list";
 import { fill, formatPrice } from "@/lib/format";
 import { absoluteUrl } from "@/lib/site";
 import { ProductGrid } from "./product-card";
@@ -153,13 +152,6 @@ export function ProductPage({
               >
                 {t.orderThis}
               </OrderSheet>
-              <AddToListButton
-                category={product.category}
-                slug={product.slug}
-                labels={dict.orderList}
-                size="lg"
-                className="w-full sm:w-auto"
-              />
             </div>
           </div>
         </div>

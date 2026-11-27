@@ -7,10 +7,10 @@ How it works: `.github/workflows/deploy.yml` builds the static site (`npm run bu
 | Trigger | Result | Drafts shown |
 |---|---|---|
 | push to `main` | **Production** → chirasweets.md | no |
-| push to `dev` | Preview → `dev.chira-sweets.pages.dev` | yes |
-| PR into `dev` / `main` | Preview → `<branch>.chira-sweets.pages.dev`, URL commented on the PR | yes |
+| push to `dev` | Preview → `dev.chira-sweets-4fw.pages.dev` | yes |
+| PR into `dev` / `main` | Preview → `<branch>.chira-sweets-4fw.pages.dev`, URL commented on the PR | yes |
 
-Preview URLs (`*.chira-sweets.pages.dev` branch and deployment aliases) are served by Cloudflare with `X-Robots-Tag: noindex` (checked on 2026-11-26), so draft products shown there are not indexed. Draft product pages also carry `<meta name="robots" content="noindex">`.
+Preview URLs (`*.chira-sweets-4fw.pages.dev` branch and deployment aliases) are served by Cloudflare with `X-Robots-Tag: noindex` (checked on 2026-11-26), so draft products shown there are not indexed. Draft product pages also carry `<meta name="robots" content="noindex">`.
 
 No secret is ever committed. Everything below is done once, by the account owner (@ciprik13).
 
@@ -21,7 +21,7 @@ No secret is ever committed. Everything below is done once, by the account owner
 2. Copy the **Account ID** (Workers & Pages → right sidebar).
 
 ## 2. Create the Pages project
-Workers & Pages → Create → Pages → **Direct Upload** → name it exactly `chira-sweets` → set **Production branch = `main`**.
+Workers & Pages → Create → Pages → **Direct Upload** → name it exactly `chira-sweets` → set **Production branch = `main`**. Cloudflare assigns the subdomain **`chira-sweets-4fw.pages.dev`** (`chira-sweets.pages.dev` belongs to another account). Only one project should exist — in @ciprik13's account.
 (Do not connect Git here — GitHub Actions does the deploys.)
 
 ## 3. API token for GitHub Actions
@@ -42,7 +42,7 @@ Settings → Secrets and variables → Actions:
 Settings → Environments → **New environment** `production` (admin only):
 - **Required reviewers: @ciprik13** — every production deploy waits for this approval.
 - **Deployment branches and tags: Selected branches → `main`** only.
-- Prevent self-review: on.
+- **Prevent self-review: OFF** — otherwise @ciprik13 cannot approve production deploys he triggers himself (releases he merges).
 
 Create `preview` too (no reviewers) so preview deploys show up under Environments.
 
@@ -50,7 +50,7 @@ The deploy workflow runs a `verify` job (lint, format, typecheck, tests, audit) 
 
 ## 5. Turnstile (anti-spam for the form)
 Cloudflare → Turnstile → Add widget:
-- Hostnames: `chirasweets.md`, `www.chirasweets.md`, `chira-sweets.pages.dev`
+- Hostnames: `chirasweets.md`, `www.chirasweets.md`, `chira-sweets-4fw.pages.dev`
 - Widget mode: **Invisible** (the form renders it as "interaction-only")
 - Copy the **site key** → GitHub variable `TURNSTILE_SITE_KEY`
 - Copy the **secret key** → Pages secret `TURNSTILE_SECRET` (step 7)
@@ -80,7 +80,7 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 2. Cloudflare shows two nameservers (e.g. `xxx.ns.cloudflare.com`).
 3. At **nic.md** (registrar account, 2FA on), replace the domain's nameservers with the two Cloudflare ones. Propagation: minutes to 24 h.
 4. When the zone is **Active**: Pages → chira-sweets → Custom domains → add `chirasweets.md`, then `www.chirasweets.md`.
-5. Redirect www → apex: Rules → Redirect Rules → *Redirect from WWW to root* template (301, keep path & query).
+5. Redirect www → apex (D-029): Rules → Redirect Rules → *Redirect from WWW to root* template, **301**, keep path & query. `https://chirasweets.md` is the only canonical URL; the shop banner QR may point to www.
 6. SSL/TLS → mode **Full (strict)**; Edge Certificates → **Always Use HTTPS** on.
 
 ## 10. Protection & analytics
@@ -89,9 +89,10 @@ Merge to `dev` → check the preview URL. When approved, release PR `dev` → `m
 - **Email**: Email → Email Routing → `contact@chirasweets.md` → owner's mailbox (address only in Cloudflare, never in the repo).
 
 ## 11. Launch checklist
+- [ ] **Chiriac David approved the About text and the homepage quote** (RO and RU, check them on the preview), then set `FOUNDER_TEXT_APPROVED = true` in `src/content/approvals.ts` — launch blocker (D-028)
 - [ ] **WAF rate-limit rule on `/api/request` active** (step 10) — launch blocker
 - [ ] `production` environment requires @ciprik13's approval (step 4)
-- [ ] https://chirasweets.md/ redirects to `/ro/`, www redirects to apex, HTTPS only
+- [ ] https://chirasweets.md/ redirects to `/ro/`; `https://www.chirasweets.md/<any path>` returns **301** to `https://chirasweets.md/<same path>`; HTTPS only
 - [ ] Shop banner QR code opens the site on a phone
 - [ ] Events form on production sends a Telegram message to the owner within a minute
 - [ ] Call / Telegram / Viber / WhatsApp / Instagram buttons open the right chats (owner confirms numbers, Q-04)

@@ -87,6 +87,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
+          # Without pipefail, `| tee` would hide a failed wrangler deploy.
+          set -o pipefail
           npx wrangler pages deploy out \
             --project-name=chira-sweets \
             --branch="$BRANCH" \

@@ -30,7 +30,7 @@ export function CatalogSearch({
   products: Product[];
   categories: readonly Category[];
   locale: Locale;
-  dict: Dictionary;
+  dict: Pick<Dictionary, "search" | "catalog" | "allergenNames">;
   /** Shown when no search or filter is active (the category grid). */
   children: ReactNode;
 }) {
